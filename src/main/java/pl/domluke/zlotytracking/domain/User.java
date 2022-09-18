@@ -18,7 +18,7 @@ public class User {
 
     @Column(nullable = false, unique = true)
     @Email
-    @NotBlank(message = "Test4")
+    @NotBlank
     private String email;
 
     @Column(name = "first_name", nullable = false, length = 30)
