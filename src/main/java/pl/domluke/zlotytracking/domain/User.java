@@ -18,7 +18,7 @@ public class User {
 
     @Column(nullable = false, unique = true)
     @Email
-    @NotBlank
+    @NotBlank(message = "Test4")
     private String email;
 
     @Column(name = "first_name", nullable = false, length = 30)
@@ -28,7 +28,7 @@ public class User {
 
     @Column(nullable = false)
     @NotBlank
-    @Length(min = 8)
+    @Length(min = 8, max = 30)
     private String password;
 
     @Column
