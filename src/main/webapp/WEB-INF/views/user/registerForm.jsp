@@ -29,5 +29,11 @@
             <button type="submit">Zarejestruj</button>
         </div>
     </form:form>
+    <div>
+        <c:if test="${registered == true}">
+            <h2>Zarejestrowano użytkownika.</h2>
+            Możesz się teraz <a href="<c:url value="/login"/>">zalogować</a>.
+        </c:if>
+    </div>
 </body>
 </html>

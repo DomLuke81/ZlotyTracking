@@ -45,7 +45,7 @@ public class LoginController {
             return "user/registerForm";
         }
         userService.saveUser(user);
-        model.addAttribute("message", "Zarejestrowano użytkownika");
+        model.addAttribute("registered", "true");
         return "user/registerForm";
     }
 }

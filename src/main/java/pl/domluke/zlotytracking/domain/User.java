@@ -28,7 +28,7 @@ public class User {
 
     @Column(nullable = false)
     @NotBlank
-    @Length(min = 8, max = 30)
+    @Length(min = 8, max = 255)
     private String password;
 
     @Column
