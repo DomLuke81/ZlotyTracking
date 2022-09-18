@@ -1,0 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+[Logo]<h1>Serwis śledzenia banknotów.</h1>
+<div>
+    <sec:authorize access="isAuthenticated()">
+        Jesteś zalogowany jako: <sec:authentication property="principal.username"/>
+        <a href="/logout">Wyloguj</a>
+    </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+        <a href="/login">Logowanie</a>
+        <a href="/login/register">Rejestracja</a>
+    </sec:authorize>
+</div>

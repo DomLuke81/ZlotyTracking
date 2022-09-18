@@ -2,10 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Strona użytkownika</title>
+    <title>Strona główna</title>
 </head>
 <body>
-<%@include file="../header.jspf"%>
-Strona użytkownika
+<%@include file="header.jspf"%>
+Strona główna
 </body>
 </html>
