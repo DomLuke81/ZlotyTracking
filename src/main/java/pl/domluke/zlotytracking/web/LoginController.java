@@ -23,8 +23,10 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String loginForm() {
+    @GetMapping
+    public String loginForm(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "/user/loginForm";
     }
 

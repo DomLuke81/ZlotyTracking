@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-    <a href="<c:url value="/login"/>">Masz już konto, przejdź do strony logowania</a>
+    Masz już konto, przejdź do <a href="<c:url value="/login"/>">strony logowania</a>
     </div>
     <form:form method="post" modelAttribute="user">
         <div>
