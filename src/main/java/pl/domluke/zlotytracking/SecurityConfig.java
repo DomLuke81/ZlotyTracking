@@ -23,17 +23,19 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login", "/login/register").anonymous()
-//                .antMatchers("/user/**").hasRole("USER")
-                .anyRequest().authenticated()
+                .antMatchers("/login/redirect").authenticated()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**").hasAuthority("USER")
+                .anyRequest().denyAll()
                 .and().formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/user")
+                .defaultSuccessUrl("/login/redirect")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
-                .and().exceptionHandling().accessDeniedPage("/access-denied")
+//                .and().exceptionHandling().accessDeniedPage("/access-denied")
                 .and().build();
     }
 
