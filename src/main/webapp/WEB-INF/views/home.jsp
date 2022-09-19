@@ -7,5 +7,6 @@
 <body>
 <%@include file="header.jspf"%>
 Strona główna
+<%@include file="footer.jspf" %>
 </body>
 </html>

@@ -14,5 +14,6 @@ Strona użytkownika:
 <p>accountNonLocked: ${user.email}</p>
 <p>credentialsNonExpired: ${user.active}</p>
 <p>authorities: <c:forEach items="${user.roles}" var="item">${item.role}</c:forEach></p>
+<%@include file="../footer.jspf" %>
 </body>
 </html>
