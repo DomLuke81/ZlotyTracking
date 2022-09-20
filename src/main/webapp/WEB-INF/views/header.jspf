@@ -1,6 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 [Logo]<h2>Serwis śledzenia banknotów.</h2>
 <div>
+    <sec:authorize access="hasAuthority('ADMIN')">
+        <a href="/admin">Panel</a>
+        <a href="/admin/zipCodes">Kody pocztowe</a>
+        <a href="/admin/noteTypes">Emisje banknotów</a>
+    </sec:authorize>
+    <sec:authorize access="hasAuthority('USER')">
+        <a href="/user">Panel</a>
+    </sec:authorize>
     <sec:authorize access="isAuthenticated()">
         Jesteś zalogowany jako: <sec:authentication property="principal.username"/>
         <a href="/logout">Wyloguj</a>
