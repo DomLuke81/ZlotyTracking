@@ -27,13 +27,11 @@ public class NoteType {
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte image;
 
-    public NoteType() {
-    }
+    @Column
+    private boolean active;
 
-    public NoteType(int value, short edition, byte image) {
-        this.value = value;
-        this.edition = edition;
-        this.image = image;
+    public NoteType() {
+        this.active = true;
     }
 
     public int getId() {
@@ -66,5 +64,13 @@ public class NoteType {
 
     public void setImage(byte image) {
         this.image = image;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

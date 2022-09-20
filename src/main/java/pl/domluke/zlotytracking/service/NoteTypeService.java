@@ -1,6 +1,8 @@
 package pl.domluke.zlotytracking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import pl.domluke.zlotytracking.domain.LocationZipCode;
 import pl.domluke.zlotytracking.domain.NoteType;
@@ -22,4 +24,7 @@ public class NoteTypeService {
         return noteTypeRepository.findLastLimitedTo(5);
     }
 
+    public Page<NoteType> getAllOnPages(int page, int itemsOnPage) {
+        return noteTypeRepository.findAllByOrderByValueAscEditionAsc(PageRequest.of(page, itemsOnPage));
+    }
 }

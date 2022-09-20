@@ -38,14 +38,6 @@ public class LocationZipCode {
     @Column
     private boolean active;
 
-    public LocationZipCode(String zipCode, String place, String voivodeship, String county) {
-        this.zipCode = zipCode;
-        this.place = place;
-        this.voivodeship = voivodeship;
-        this.county = county;
-        this.active = true;
-    }
-
     public LocationZipCode() {
         this.active = true;
     }
