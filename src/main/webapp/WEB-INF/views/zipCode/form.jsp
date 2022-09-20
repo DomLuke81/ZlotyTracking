@@ -37,6 +37,6 @@
         </tr>
     </form:form>
 </table>
-<p><a href="/admin/zipCodes">Wróć</a></p>
+<p><a href="${header.get("Referer")}">Wróć</a></p>
 </body>
 </html>

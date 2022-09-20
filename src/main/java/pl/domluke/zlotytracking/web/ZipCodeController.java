@@ -5,14 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.domluke.zlotytracking.domain.LocationZipCode;
 import pl.domluke.zlotytracking.service.LocationZipCodeService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/zipCodes")
@@ -53,5 +52,12 @@ public class ZipCodeController {
         locationZipCodeService.save(locationZipCode);
         model.addAttribute("message", "Zapisano lokalizację " + locationZipCode.getPlace());
         return "zipCode/form";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id, HttpServletRequest request) {
+        locationZipCodeService.delete(id);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 }

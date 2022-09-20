@@ -16,7 +16,7 @@
         <th>miejscowość</th>
         <th>powiat</th>
         <th>województwo</th>
-        <th>aktualny</th>
+        <th>usunięty?</th>
         <th></th>
         </thead>
         <tbody>
@@ -26,11 +26,22 @@
                 <td>${zipCode.place}</td>
                 <td>${zipCode.county}</td>
                 <td>${zipCode.voivodeship}</td>
-                <td>${zipCode.active}</td>
-                <td>
-                    <a href="/admin/zipCodes/edit/${zipCode.id}">Edytuj</a>
-                    <a href="/admin/zipCodes/delete/${zipCode.id}">Dezaktywuj</a>
-                </td>
+                <c:choose>
+                    <c:when test="${zipCode.active}">
+                        <td></td>
+                        <td>
+                            <a href="/admin/zipCodes/edit/${zipCode.id}">Edytuj</a>
+                            <a href="/admin/zipCodes/delete/${zipCode.id}">Usuń (bezpiecznie)</a>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>Usunięty</td>
+                        <td>
+                            <a href="/admin/zipCodes/edit/${zipCode.id}">Edytuj</a>
+                            <a href="/admin/zipCodes/delete/${zipCode.id}">Przywróć</a>
+                        </td>
+                    </c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
         </tbody>
