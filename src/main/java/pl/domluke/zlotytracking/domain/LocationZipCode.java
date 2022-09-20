@@ -34,25 +34,25 @@ public class LocationZipCode {
     private String county;
 
     @Column
-    private boolean inUse;
+    private boolean active;
 
     public LocationZipCode(String zipCode, String place, String voivodeship, String county) {
         this.zipCode = zipCode;
         this.place = place;
         this.voivodeship = voivodeship;
         this.county = county;
-        this.inUse = true;
+        this.active = true;
     }
 
     public LocationZipCode() {
     }
 
-    public boolean isInUse() {
-        return inUse;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setInUse(boolean inUse) {
-        this.inUse = inUse;
+    public void setActive(boolean inUse) {
+        this.active = inUse;
     }
 
     public Integer getId() {

@@ -16,6 +16,7 @@
         <th>miejscowość</th>
         <th>powiat</th>
         <th>województwo</th>
+        <th>aktualny</th>
         <th></th>
         </thead>
         <tbody>
@@ -25,16 +26,26 @@
                 <td>${zipCode.place}</td>
                 <td>${zipCode.county}</td>
                 <td>${zipCode.voivodeship}</td>
+                <td>${zipCode.active}</td>
                 <td>
                     <a href="edit/${zipCode.id}">Edytuj</a>
-                    <a href="delete/${zipCode.id}">Usuń z użycia</a>
+                    <a href="delete/${zipCode.id}">Dezaktywuj</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+    <c:if test="${pages != null}">
+        Strona: ${page} z ${pages}   Przejdź:
+        <c:forEach begin="1" end="${pages}" var="itemPages">
+            <c:choose>
+                <c:when test="${itemPages == page}">${itemPages}</c:when>
+                <c:otherwise><a href="/admin/zipCodes/page/${itemPages}">${itemPages}</a></c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </c:if>
 </div>
-
+<p><a href="/admin/zipCodes/edit/0">Dodaj lokalizację</a></p>
 <%@include file="../footer.jspf" %>
 </body>
 </html>
