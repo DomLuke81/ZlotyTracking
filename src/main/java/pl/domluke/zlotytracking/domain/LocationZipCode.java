@@ -1,5 +1,7 @@
 package pl.domluke.zlotytracking.domain;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -18,7 +20,7 @@ public class LocationZipCode {
             length = 6,
             nullable = false)
     @NotBlank
-    @Pattern(regexp = "\\d{2}-\\d{3}")
+    @Pattern(regexp = "\\d{2}-\\d{3}", message = "Musi mieć formę 00-000")
     private String zipCode;
 
     @Column(nullable = false)
@@ -45,6 +47,7 @@ public class LocationZipCode {
     }
 
     public LocationZipCode() {
+        this.active = true;
     }
 
     public boolean isActive() {

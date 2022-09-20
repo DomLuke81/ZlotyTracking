@@ -9,22 +9,30 @@ import pl.domluke.zlotytracking.domain.LocationZipCode;
 import pl.domluke.zlotytracking.repository.LocationZipCodeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocationZipCodeService {
-    private final LocationZipCodeRepository locationRepository;
+    private final LocationZipCodeRepository zipCodeRepository;
 
     @Autowired
     public LocationZipCodeService(LocationZipCodeRepository locationRepository) {
-        this.locationRepository = locationRepository;
+        this.zipCodeRepository = locationRepository;
     }
 
     public List<LocationZipCode> getLast5Entries() {
-        return locationRepository.findLastLimitedTo(5);
+        return zipCodeRepository.findLastLimitedTo(5);
     }
 
     public Page<LocationZipCode> getAllOnPages(int page, int itemsOnPage) {
-        return locationRepository.findAll(PageRequest.of(page, itemsOnPage));
+        return zipCodeRepository.findAllByOrderByZipCode(PageRequest.of(page, itemsOnPage));
     }
 
+    public Optional<LocationZipCode> getLocationById(int id) {
+        return zipCodeRepository.findById(id);
+    }
+
+    public LocationZipCode save (LocationZipCode locationZipCode) {
+        return zipCodeRepository.save(locationZipCode);
+    }
 }

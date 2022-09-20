@@ -9,7 +9,7 @@
 <%@include file="../header.jspf" %>
 <div>
     <h2>Kody pocztowe</h2>
-    <p><a href="edit/0"></a></p>
+    <p><a href="/admin/zipCodes/edit/0">Dodaj lokalizację</a></p>
     <table>
         <thead>
         <th>kod pocztowy</th>
@@ -28,8 +28,8 @@
                 <td>${zipCode.voivodeship}</td>
                 <td>${zipCode.active}</td>
                 <td>
-                    <a href="edit/${zipCode.id}">Edytuj</a>
-                    <a href="delete/${zipCode.id}">Dezaktywuj</a>
+                    <a href="/admin/zipCodes/edit/${zipCode.id}">Edytuj</a>
+                    <a href="/admin/zipCodes/delete/${zipCode.id}">Dezaktywuj</a>
                 </td>
             </tr>
         </c:forEach>
@@ -45,7 +45,6 @@
         </c:forEach>
     </c:if>
 </div>
-<p><a href="/admin/zipCodes/edit/0">Dodaj lokalizację</a></p>
 <%@include file="../footer.jspf" %>
 </body>
 </html>

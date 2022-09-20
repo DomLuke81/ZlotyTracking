@@ -12,10 +12,10 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface LocationZipCodeRepository extends JpaRepository<LocationZipCode, String> {
+public interface LocationZipCodeRepository extends JpaRepository<LocationZipCode, Integer> {
 
     @Query(value = "SELECT * FROM zip_codes ORDER BY id DESC LIMIT :numberOfEntries", nativeQuery = true)
     List<LocationZipCode> findLastLimitedTo(int numberOfEntries);
 
-    Page<LocationZipCode> findAll(Pageable pageable);
+    Page<LocationZipCode> findAllByOrderByZipCode(Pageable pageable);
 }
