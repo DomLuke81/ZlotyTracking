@@ -33,6 +33,28 @@ public class LocationZipCode {
     @NotBlank
     private String county;
 
+    @Column
+    private boolean inUse;
+
+    public LocationZipCode(String zipCode, String place, String voivodeship, String county) {
+        this.zipCode = zipCode;
+        this.place = place;
+        this.voivodeship = voivodeship;
+        this.county = county;
+        this.inUse = true;
+    }
+
+    public LocationZipCode() {
+    }
+
+    public boolean isInUse() {
+        return inUse;
+    }
+
+    public void setInUse(boolean inUse) {
+        this.inUse = inUse;
+    }
+
     public Integer getId() {
         return id;
     }

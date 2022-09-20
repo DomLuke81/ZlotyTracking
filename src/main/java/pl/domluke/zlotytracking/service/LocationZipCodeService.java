@@ -20,4 +20,8 @@ public class LocationZipCodeService {
         return locationRepository.findLastLimitedTo(5);
     }
 
+    public List<LocationZipCode> getAllOnPages(int page, int itemsOnPage) {
+        return locationRepository.findAll();
+    }
+
 }
