@@ -12,12 +12,14 @@
     <p><a href="/admin/zipCodes/edit/0">Dodaj lokalizację</a></p>
     <table>
         <thead>
-        <th>kod pocztowy</th>
-        <th>miejscowość</th>
-        <th>powiat</th>
-        <th>województwo</th>
-        <th>usunięty?</th>
-        <th></th>
+        <tr>
+            <th>kod pocztowy</th>
+            <th>miejscowość</th>
+            <th>powiat</th>
+            <th>województwo</th>
+            <th>usunięty?</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
         <c:forEach items="${zipCodes}" var="zipCode">

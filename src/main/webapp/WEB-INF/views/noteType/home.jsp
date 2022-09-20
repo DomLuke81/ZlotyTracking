@@ -12,10 +12,12 @@
     <p><a href="/admin/noteTypes/edit/0">Dodaj emisję banknotów</a></p>
     <table>
         <thead>
-        <th>nominał</th>
-        <th>emisja</th>
-        <th>wzór</th>
-        <th></th>
+        <tr>
+            <th>nominał</th>
+            <th>emisja</th>
+            <th>wzór</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
         <c:forEach items="${noteTypes}" var="noteType">

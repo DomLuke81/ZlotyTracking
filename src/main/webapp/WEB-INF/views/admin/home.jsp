@@ -11,10 +11,12 @@
     <h2>Kody pocztowe</h2>
     <table onclick="location.href='/admin/zipCodes'" title="Kliknij - pokaż wszystkie">
         <thead>
-        <th>kod pocztowy</th>
-        <th>miejscowość</th>
-        <th>powiat</th>
-        <th>województwo</th>
+        <tr>
+            <th>kod pocztowy</th>
+            <th>miejscowość</th>
+            <th>powiat</th>
+            <th>województwo</th>
+        </tr>
         </thead>
         <tbody>
         <c:forEach items="${zipCodes}" var="zipCode">
@@ -32,9 +34,11 @@
     <h2>Emisje banknotów</h2>
     <table onclick="location.href='/admin/noteTypes'" title="Kliknij - pokaż wszystkie">
         <thead>
-        <th>nominał</th>
-        <th>emisja</th>
-        <th>wzór</th>
+        <tr>
+            <th>nominał</th>
+            <th>emisja</th>
+            <th>wzór</th>
+        </tr>
         </thead>
         <tbody>
         <c:forEach items="${noteTypes}" var="noteType">
