@@ -9,7 +9,7 @@ import java.util.Base64;
 
 @Entity
 @Table(name = "note_type",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"value", "edition"}))
+        uniqueConstraints = @UniqueConstraint(columnNames = {"denomination", "edition"}))
 public class NoteType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,8 @@ public class NoteType {
     @Column(nullable = false)
     @NotNull
     @Min(10)
-    private int value;
+    @Max(2000000000)
+    private int denomination;
 
     @Column(nullable = false)
     @NotNull
@@ -34,13 +35,13 @@ public class NoteType {
 
     public NoteTypeDto toDto() {
         NoteTypeDto noteTypeDto = new NoteTypeDto();
-        noteTypeDto.setId(this.id);
-        noteTypeDto.setValue(this.value);
-        noteTypeDto.setEdition(this.edition);
-        if (this.image != null) {
-            noteTypeDto.setImage(new String(Base64.getEncoder().encode(this.image), StandardCharsets.UTF_8));
+        noteTypeDto.setId(id);
+        noteTypeDto.setDenomination(denomination);
+        noteTypeDto.setEdition(edition);
+        if (image != null) {
+            noteTypeDto.setImage(new String(Base64.getEncoder().encode(image), StandardCharsets.UTF_8));
         }
-        noteTypeDto.setActive(this.active);
+        noteTypeDto.setActive(active);
         return noteTypeDto;
     }
 
@@ -56,12 +57,12 @@ public class NoteType {
         this.id = id;
     }
 
-    public int getValue() {
-        return value;
+    public int getDenomination() {
+        return denomination;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setDenomination(int value) {
+        this.denomination = value;
     }
 
     public short getEdition() {

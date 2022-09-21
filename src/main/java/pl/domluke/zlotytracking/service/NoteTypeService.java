@@ -41,6 +41,10 @@ public class NoteTypeService {
         return noteTypeRepository.findById(id).orElse(new NoteType()).toDto();
     }
 
+    public void save(NoteTypeDto noteTypeDto) {
+        noteTypeRepository.save(noteTypeDto.toEntity());
+    }
+
     public NoteTypeDto delete(int id) {
         Optional<NoteType> noteTypeOptional = noteTypeRepository.findById(id);
         if (noteTypeOptional.isPresent()) {

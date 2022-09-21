@@ -23,7 +23,7 @@
         <tbody>
         <c:forEach items="${page.content}" var="noteType">
             <tr>
-                <td>${noteType.value}</td>
+                <td>${noteType.denomination}</td>
                 <td>${noteType.edition}</td>
                 <td><img src="data:image/jpeg;base64,${noteType.image}" /></td>
                 <c:choose>

@@ -13,8 +13,8 @@
         <form:hidden path="active"/>
         <tr>
             <td>Nominał:</td>
-            <td><form:input path="value" type="number" min="10" max="2000000000"/></td>
-            <td><form:errors path="value" cssClass="error"/></td>
+            <td><form:input path="denomination" type="number" min="10" max="2000000000"/></td>
+            <td><form:errors path="denomination" cssClass="error"/></td>
         </tr>
         <tr>
             <td>Emisja:</td>

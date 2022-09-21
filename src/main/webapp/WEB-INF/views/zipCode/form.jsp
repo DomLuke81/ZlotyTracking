@@ -13,7 +13,7 @@
         <form:hidden path="active"/>
         <tr>
             <td>Kod pocztowy:</td>
-            <td><form:input path="zipCode"/></td>
+            <td><form:input path="zipCode" pattern="\d{2}-\d{3}"/></td>
             <td><form:errors path="zipCode" cssClass="error"/></td>
         </tr>
         <tr>

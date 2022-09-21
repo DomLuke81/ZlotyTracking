@@ -1,10 +1,9 @@
 package pl.domluke.zlotytracking.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.nio.charset.StandardCharsets;
 
 public class NoteTypeDto {
     private int id;
@@ -12,7 +11,7 @@ public class NoteTypeDto {
     @NotNull
     @Min(10)
     @Max(2000000000)
-    private int value;
+    private int denomination;
 
     @NotNull
     @Min(1994)
@@ -31,12 +30,12 @@ public class NoteTypeDto {
         this.id = id;
     }
 
-    public int getValue() {
-        return value;
+    public int getDenomination() {
+        return denomination;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setDenomination(int denomination) {
+        this.denomination = denomination;
     }
 
     public short getEdition() {
@@ -61,5 +60,14 @@ public class NoteTypeDto {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public NoteType toEntity() {
+        NoteType noteType = new NoteType();
+        noteType.setDenomination(denomination);
+        noteType.setEdition(edition);
+        noteType.setImage(image.getBytes(StandardCharsets.UTF_8));
+        noteType.setActive(active);
+        return noteType;
     }
 }

@@ -43,7 +43,7 @@
         <tbody>
         <c:forEach items="${noteTypes}" var="noteType">
             <tr>
-                <td>${noteType.value}</td>
+                <td>${noteType.denomination}</td>
                 <td>${noteType.edition}</td>
                 <td><img src="data:image/jpeg;base64,${noteType.image}" width="250" height="125"/></td>
             </tr>
