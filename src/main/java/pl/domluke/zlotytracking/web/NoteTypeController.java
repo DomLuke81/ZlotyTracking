@@ -11,6 +11,8 @@ import pl.domluke.zlotytracking.domain.NoteType;
 import pl.domluke.zlotytracking.domain.NoteTypeDto;
 import pl.domluke.zlotytracking.service.NoteTypeService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/admin/noteTypes")
 public class NoteTypeController {
@@ -34,5 +36,12 @@ public class NoteTypeController {
 //        model.addAttribute("pages", noteTypePage.getTotalPages());
         model.addAttribute("page", noteTypeService.getAllOnPages((page - 1), 5));
         return "noteType/home";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id, HttpServletRequest request) {
+        noteTypeService.delete(id);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 }

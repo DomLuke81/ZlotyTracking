@@ -12,6 +12,7 @@ import pl.domluke.zlotytracking.repository.NoteTypeRepository;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,5 +35,20 @@ public class NoteTypeService {
         Page<NoteType> pages = noteTypeRepository.findAllByOrderByValueAscEditionAsc(PageRequest.of(page, itemsOnPage));
         List<NoteTypeDto> noteTypeDtoList = pages.getContent().stream().map(NoteType::toDto).collect(Collectors.toList());
         return new PageImpl<>(noteTypeDtoList, PageRequest.of(page, itemsOnPage), pages.getTotalElements());
+    }
+
+    public NoteTypeDto getNoteTypeById(int id) {
+        return noteTypeRepository.findById(id).orElse(new NoteType()).toDto();
+    }
+
+    public NoteTypeDto delete(int id) {
+        Optional<NoteType> noteTypeOptional = noteTypeRepository.findById(id);
+        if (noteTypeOptional.isPresent()) {
+            NoteType noteType = noteTypeOptional.get();
+            noteType.setActive(!noteType.isActive());
+            noteTypeRepository.save(noteType);
+            return noteType.toDto();
+        }
+        return null;
     }
 }

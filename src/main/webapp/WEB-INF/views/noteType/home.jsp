@@ -16,6 +16,7 @@
             <th>nominał</th>
             <th>emisja</th>
             <th>wzór</th>
+            <th>usunięty?</th>
             <th></th>
         </tr>
         </thead>
@@ -45,10 +46,10 @@
         </c:forEach>
         </tbody>
     </table>
-    Strona: ${page.number - 1} z ${page.totalPages} Przejdź:
+    Strona: ${page.number + 1} z ${page.totalPages} Przejdź:
     <c:forEach begin="1" end="${page.totalPages}" var="itemPages">
         <c:choose>
-            <c:when test="${itemPages == (page.number -1)}">${itemPages}</c:when>
+            <c:when test="${itemPages == (page.number + 1)}">${itemPages}</c:when>
             <c:otherwise><a href="/admin/noteTypes/page/${itemPages}">${itemPages}</a></c:otherwise>
         </c:choose>
     </c:forEach>

@@ -31,16 +31,16 @@ public class LocationZipCodeService {
         return zipCodeRepository.findById(id);
     }
 
-    public LocationZipCode save (LocationZipCode locationZipCode) {
+    public LocationZipCode save(LocationZipCode locationZipCode) {
         return zipCodeRepository.save(locationZipCode);
     }
 
-    public LocationZipCode delete (int id) {
+    public LocationZipCode delete(int id) {
         LocationZipCode locationZipCode = zipCodeRepository.findById(id).orElse(null);
         if (locationZipCode != null) {
             locationZipCode.setActive(!locationZipCode.isActive());
+            save(locationZipCode);
         }
-        save(locationZipCode);
         return locationZipCode;
     }
 }
