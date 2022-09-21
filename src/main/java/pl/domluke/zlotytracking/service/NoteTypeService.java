@@ -24,8 +24,10 @@ public class NoteTypeService {
         this.noteTypeRepository = noteTypeRepository;
     }
 
-    public List<NoteType> getLast5Entries() {
-        return noteTypeRepository.findLastLimitedTo(5);
+    public List<NoteTypeDto> getLast5Entries() {
+        return noteTypeRepository.findLastLimitedTo(5)
+                .stream().map(NoteType::toDto)
+                .collect(Collectors.toList());
     }
 
     public Page<NoteTypeDto> getAllOnPages(int page, int itemsOnPage) {

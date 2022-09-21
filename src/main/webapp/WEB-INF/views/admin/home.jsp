@@ -45,7 +45,7 @@
             <tr>
                 <td>${noteType.value}</td>
                 <td>${noteType.edition}</td>
-                <td>obraz</td>
+                <td><img src="data:image/jpeg;base64,${noteType.image}" width="250" height="125"/></td>
             </tr>
         </c:forEach>
         </tbody>
