@@ -37,7 +37,9 @@ public class NoteType {
         noteTypeDto.setId(this.id);
         noteTypeDto.setValue(this.value);
         noteTypeDto.setEdition(this.edition);
-        noteTypeDto.setImage(new String(Base64.getEncoder().encode(this.image), StandardCharsets.UTF_8));
+        if (this.image != null) {
+            noteTypeDto.setImage(new String(Base64.getEncoder().encode(this.image), StandardCharsets.UTF_8));
+        }
         noteTypeDto.setActive(this.active);
         return noteTypeDto;
     }

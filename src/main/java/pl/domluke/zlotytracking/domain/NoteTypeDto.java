@@ -11,6 +11,7 @@ public class NoteTypeDto {
 
     @NotNull
     @Min(10)
+    @Max(2000000000)
     private int value;
 
     @NotNull

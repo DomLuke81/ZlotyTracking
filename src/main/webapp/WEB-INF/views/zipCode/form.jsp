@@ -5,6 +5,7 @@
     <title>Edycja lokalizacji</title>
 </head>
 <body>
+<%@include file="../header.jspf" %>
 <c:if test="${message != null}">${message}</c:if>
 <table>
     <form:form method="post" modelAttribute="locationZipCode">
@@ -37,6 +38,7 @@
         </tr>
     </form:form>
 </table>
-<p><a href="${header.get("Referer")}">Wróć</a></p>
+<p><a href="/admin/zipCodes">Wróć</a></p>
+<%@include file="../footer.jspf" %>
 </body>
 </html>
