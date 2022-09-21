@@ -20,11 +20,11 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${noteType}" var="noteType">
+        <c:forEach items="${page.content}" var="noteType">
             <tr>
                 <td>${noteType.value}</td>
                 <td>${noteType.edition}</td>
-                <td><img src="data:image/jpeg;base64,${noteType.imageToShow}" /></td>
+                <td><img src="data:image/jpeg;base64,${noteType.image}" /></td>
                 <c:choose>
                     <c:when test="${noteType.active}">
                         <td></td>
@@ -45,10 +45,10 @@
         </c:forEach>
         </tbody>
     </table>
-    Strona: ${page} z ${pages} Przejdź:
-    <c:forEach begin="1" end="${pages}" var="itemPages">
+    Strona: ${page.number - 1} z ${page.totalPages} Przejdź:
+    <c:forEach begin="1" end="${page.totalPages}" var="itemPages">
         <c:choose>
-            <c:when test="${itemPages == page}">${itemPages}</c:when>
+            <c:when test="${itemPages == (page.number -1)}">${itemPages}</c:when>
             <c:otherwise><a href="/admin/noteTypes/page/${itemPages}">${itemPages}</a></c:otherwise>
         </c:choose>
     </c:forEach>

@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 @Entity
 @Table(name = "note_type",
@@ -27,11 +29,18 @@ public class NoteType {
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] image;
 
-    @Transient
-    private String imageToShow;
-
     @Column
     private boolean active;
+
+    public NoteTypeDto toDto() {
+        NoteTypeDto noteTypeDto = new NoteTypeDto();
+        noteTypeDto.setId(this.id);
+        noteTypeDto.setValue(this.value);
+        noteTypeDto.setEdition(this.edition);
+        noteTypeDto.setImage(new String(Base64.getEncoder().encode(this.image), StandardCharsets.UTF_8));
+        noteTypeDto.setActive(this.active);
+        return noteTypeDto;
+    }
 
     public NoteType() {
         this.active = true;
@@ -77,11 +86,4 @@ public class NoteType {
         this.active = active;
     }
 
-    public String getImageToShow() {
-        return imageToShow;
-    }
-
-    public void setImageToShow(String imageToShow) {
-        this.imageToShow = imageToShow;
-    }
 }

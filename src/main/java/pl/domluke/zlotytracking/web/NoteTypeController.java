@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.domluke.zlotytracking.domain.NoteType;
+import pl.domluke.zlotytracking.domain.NoteTypeDto;
 import pl.domluke.zlotytracking.service.NoteTypeService;
 
 @Controller
@@ -27,11 +28,11 @@ public class NoteTypeController {
 
     @GetMapping("/page/{page}")
     public String homePaged(Model model, @PathVariable Integer page) {
-        Page<NoteType> noteTypePage = noteTypeService.getAllOnPages((page - 1), 5);
-        model.addAttribute("noteType", noteTypePage.getContent());
-        model.addAttribute("page", noteTypePage.getNumber());
-        model.addAttribute("pages", noteTypePage.getTotalPages());
-//        model.addAttribute("page", noteTypeService.getAllOnPages((page - 1), 20));
+//        Page<NoteTypeDto> noteTypePage = noteTypeService.getAllOnPages((page - 1), 5);
+//        model.addAttribute("noteType", noteTypePage.getContent());
+//        model.addAttribute("page", noteTypePage.getNumber());
+//        model.addAttribute("pages", noteTypePage.getTotalPages());
+        model.addAttribute("page", noteTypeService.getAllOnPages((page - 1), 5));
         return "noteType/home";
     }
 }
