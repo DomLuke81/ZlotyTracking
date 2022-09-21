@@ -47,9 +47,11 @@ public class NoteTypeController {
         if (bindingResult.hasErrors()) {
             return "noteType/form";
         }
-//        noteTypeService.save(noteTypeDto);
-//        model.addAttribute("message", "Zapisano daną emisję");
-        return "redirect:/admin/noteTypes";
+        if (noteTypeService.save(noteTypeDto)) {
+            return "redirect:/admin/noteTypes";
+        }
+        model.addAttribute("message", "Błąd. Nie zapisano rekordu");
+        return "noteType/form";
     }
 
     @GetMapping("/delete/{id}")

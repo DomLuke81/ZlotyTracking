@@ -4,7 +4,7 @@ import pl.domluke.zlotytracking.domain.NoteType;
 
 public interface NoteTypeAuxRepository {
 
-    NoteType saveWithoutImage(NoteType noteType);
+    boolean saveWithoutImage(NoteType noteType);
 
     boolean saveOnlyImage(int id, byte[] image);
 

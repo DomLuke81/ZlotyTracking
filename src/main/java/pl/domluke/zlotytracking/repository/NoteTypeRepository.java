@@ -18,6 +18,6 @@ public interface NoteTypeRepository extends JpaRepository<NoteType, Integer>, No
     @Query(value = "SELECT * FROM note_type ORDER BY id DESC LIMIT :numberOfEntries", nativeQuery = true)
     List<NoteType> findLastLimitedTo(int numberOfEntries);
 
-    Page<NoteType> findAllByOrderByValueAscEditionAsc(Pageable pageable);
+    Page<NoteType> findAllByOrderByDenominationAscEditionAsc(Pageable pageable);
 
 }

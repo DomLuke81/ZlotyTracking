@@ -64,9 +64,14 @@ public class NoteTypeDto {
 
     public NoteType toEntity() {
         NoteType noteType = new NoteType();
+        noteType.setId(id);
         noteType.setDenomination(denomination);
         noteType.setEdition(edition);
-        noteType.setImage(image.getBytes(StandardCharsets.UTF_8));
+        if (image != null) {
+            noteType.setImage(image.getBytes(StandardCharsets.UTF_8));
+        } else {
+            noteType.setImage(null);
+        }
         noteType.setActive(active);
         return noteType;
     }
