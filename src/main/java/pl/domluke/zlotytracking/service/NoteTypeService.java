@@ -41,7 +41,7 @@ public class NoteTypeService {
         return noteTypeRepository.findById(id).orElse(new NoteType()).toDto();
     }
 
-    public boolean save(NoteTypeDto noteTypeDto) {
+    public boolean saveWithoutImage(NoteTypeDto noteTypeDto) {
         return noteTypeRepository.saveWithoutImage(noteTypeDto.toEntity());
     }
 

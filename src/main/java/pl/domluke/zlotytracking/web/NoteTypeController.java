@@ -42,16 +42,23 @@ public class NoteTypeController {
     @PostMapping("/edit/{id}")
     public String editNoteType(@Valid NoteTypeDto noteTypeDto,
                                BindingResult bindingResult,
-//                               @RequestParam MultipartFile image,
+                               @RequestParam MultipartFile image,
                                Model model) {
         if (bindingResult.hasErrors()) {
             return "noteType/form";
         }
-        if (noteTypeService.save(noteTypeDto)) {
-            return "redirect:/admin/noteTypes";
+        if (!noteTypeService.saveWithoutImage(noteTypeDto)) {
+            model.addAttribute("message", "Błąd. Nie zapisano rekordu!");
+            return "noteType/form";
         }
-        model.addAttribute("message", "Błąd. Nie zapisano rekordu");
-        return "noteType/form";
+        if (!image.isEmpty()) {
+//            if (!noteTypeService.saveImage(noteTypeDto.getId())) {
+            if (true) {
+                model.addAttribute("message", "Błąd. Nie zapisano pliku z obrazem!");
+                return "noteType/form";
+            }
+        }
+        return "redirect:/admin/noteTypes";
     }
 
     @GetMapping("/delete/{id}")
