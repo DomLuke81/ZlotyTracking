@@ -25,7 +25,10 @@ public class NoteType {
     private short edition;
 
     @Column(columnDefinition = "MEDIUMBLOB")
-    private byte image;
+    private byte[] image;
+
+    @Transient
+    private String imageToShow;
 
     @Column
     private boolean active;
@@ -58,11 +61,11 @@ public class NoteType {
         this.edition = edition;
     }
 
-    public byte getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(byte image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -72,5 +75,13 @@ public class NoteType {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getImageToShow() {
+        return imageToShow;
+    }
+
+    public void setImageToShow(String imageToShow) {
+        this.imageToShow = imageToShow;
     }
 }

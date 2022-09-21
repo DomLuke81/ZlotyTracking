@@ -27,9 +27,11 @@ public class NoteTypeController {
 
     @GetMapping("/page/{page}")
     public String homePaged(Model model, @PathVariable Integer page) {
-//        Page<NoteType> noteTypePage = noteTypeService.getAllOnPages((page - 1), 20);
-//        model.addAttribute("page", noteTypePage);
-        model.addAttribute("page", noteTypeService.getAllOnPages((page - 1), 20));
+        Page<NoteType> noteTypePage = noteTypeService.getAllOnPages((page - 1), 5);
+        model.addAttribute("noteType", noteTypePage.getContent());
+        model.addAttribute("page", noteTypePage.getNumber());
+        model.addAttribute("pages", noteTypePage.getTotalPages());
+//        model.addAttribute("page", noteTypeService.getAllOnPages((page - 1), 20));
         return "noteType/home";
     }
 }

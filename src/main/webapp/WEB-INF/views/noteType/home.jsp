@@ -20,11 +20,11 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${noteTypes}" var="noteType">
+        <c:forEach items="${noteType}" var="noteType">
             <tr>
                 <td>${noteType.value}</td>
                 <td>${noteType.edition}</td>
-                <td>obraz</td>
+                <td><img src="data:image/jpeg;base64,${noteType.imageToShow}" /></td>
                 <c:choose>
                     <c:when test="${noteType.active}">
                         <td></td>
@@ -45,15 +45,13 @@
         </c:forEach>
         </tbody>
     </table>
-    <c:if test="${pages != null}">
-        Strona: ${page} z ${pages}   Przejdź:
-        <c:forEach begin="1" end="${pages}" var="itemPages">
-            <c:choose>
-                <c:when test="${itemPages == page}">${itemPages}</c:when>
-                <c:otherwise><a href="/admin/noteTypes/page/${itemPages}">${itemPages}</a></c:otherwise>
-            </c:choose>
-        </c:forEach>
-    </c:if>
+    Strona: ${page} z ${pages} Przejdź:
+    <c:forEach begin="1" end="${pages}" var="itemPages">
+        <c:choose>
+            <c:when test="${itemPages == page}">${itemPages}</c:when>
+            <c:otherwise><a href="/admin/noteTypes/page/${itemPages}">${itemPages}</a></c:otherwise>
+        </c:choose>
+    </c:forEach>
 </div>
 <%@include file="../footer.jspf" %>
 </body>
