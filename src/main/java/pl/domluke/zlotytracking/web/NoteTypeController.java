@@ -54,9 +54,10 @@ public class NoteTypeController {
         }
         if (!file.isEmpty()) {
             try {
-                noteTypeService.addImageToNoteType(noteTypeDto, file.getBytes());
-                model.addAttribute("message", "Błąd! Nie zapisano pliku.");
-                return "noteType/form";
+                if (!noteTypeService.addImageToNoteType(noteTypeDto, file.getBytes())) {
+                    model.addAttribute("message", "Błąd! Nie zapisano pliku.");
+                    return "noteType/form";
+                }
             } catch (IOException e) {
                 model.addAttribute("message", e.getMessage());
                 return "noteType/form";
