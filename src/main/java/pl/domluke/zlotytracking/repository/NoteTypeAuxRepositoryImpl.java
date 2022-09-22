@@ -39,7 +39,10 @@ public class NoteTypeAuxRepositoryImpl implements NoteTypeAuxRepository {
 
     @Override
     public boolean saveOnlyImage(int id, byte[] image) {
-        return false;
+        return (entityManager.createNativeQuery("UPDATE note_type SET image=:image WHERE id=:id")
+                .setParameter("image", image)
+                .setParameter("id", id)
+                .executeUpdate()) == 1;
     }
 
     @Override

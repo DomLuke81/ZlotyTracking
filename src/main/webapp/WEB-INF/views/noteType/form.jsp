@@ -24,8 +24,8 @@
         </tr>
         <tr>
             <td>Wzór:</td>
-            <td><form:input path="image" type="file"/></td>
-            <td><form:errors path="image" cssClass="error"/></td>
+            <td><img src="data:image/jpeg;base64,${noteTypeDto.image}" /></td>
+            <td><input type="file" name="file"/></td>
         </tr>
         <tr>
             <td colspan="3">

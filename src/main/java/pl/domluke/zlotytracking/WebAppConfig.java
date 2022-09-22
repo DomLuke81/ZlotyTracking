@@ -1,5 +1,6 @@
 package pl.domluke.zlotytracking;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -11,4 +12,7 @@ public class WebAppConfig implements WebMvcConfigurer {
         registry.addViewController("/user").setViewName("user/home");
         registry.addViewController("/").setViewName("home");
     }
+
+
+
 }

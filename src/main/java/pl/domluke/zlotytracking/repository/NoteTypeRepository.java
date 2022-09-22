@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.domluke.zlotytracking.domain.NoteType;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -20,4 +21,5 @@ public interface NoteTypeRepository extends JpaRepository<NoteType, Integer>, No
 
     Page<NoteType> findAllByOrderByDenominationAscEditionAsc(Pageable pageable);
 
+    Optional<NoteType> findNoteTypeByDenominationAndEdition(int denomination, short edition);
 }

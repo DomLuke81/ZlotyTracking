@@ -11,6 +11,7 @@ import pl.domluke.zlotytracking.service.NoteTypeService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin/noteTypes")
@@ -42,19 +43,22 @@ public class NoteTypeController {
     @PostMapping("/edit/{id}")
     public String editNoteType(@Valid NoteTypeDto noteTypeDto,
                                BindingResult bindingResult,
-                               @RequestParam MultipartFile image,
+                               @RequestParam MultipartFile file,
                                Model model) {
         if (bindingResult.hasErrors()) {
             return "noteType/form";
         }
         if (!noteTypeService.saveWithoutImage(noteTypeDto)) {
-            model.addAttribute("message", "Błąd. Nie zapisano rekordu!");
+            model.addAttribute("message", "Błąd! Nie zapisano rekordu.");
             return "noteType/form";
         }
-        if (!image.isEmpty()) {
-//            if (!noteTypeService.saveImage(noteTypeDto.getId())) {
-            if (true) {
-                model.addAttribute("message", "Błąd. Nie zapisano pliku z obrazem!");
+        if (!file.isEmpty()) {
+            try {
+                noteTypeService.addImageToNoteType(noteTypeDto, file.getBytes());
+                model.addAttribute("message", "Błąd! Nie zapisano pliku.");
+                return "noteType/form";
+            } catch (IOException e) {
+                model.addAttribute("message", e.getMessage());
                 return "noteType/form";
             }
         }

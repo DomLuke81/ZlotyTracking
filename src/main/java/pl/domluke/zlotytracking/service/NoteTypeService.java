@@ -45,6 +45,18 @@ public class NoteTypeService {
         return noteTypeRepository.saveWithoutImage(noteTypeDto.toEntity());
     }
 
+    public boolean addImageToNoteType(NoteTypeDto noteTypeDto, byte[] image) {
+        if (noteTypeDto.getId() == 0) {
+            Optional<NoteType> noteTypeOptional = noteTypeRepository.findNoteTypeByDenominationAndEdition(
+                    noteTypeDto.getDenomination(), noteTypeDto.getEdition());
+            if (noteTypeOptional.isEmpty()) {
+                return false;
+            }
+            noteTypeDto.setId(noteTypeOptional.get().getId());
+        }
+        return noteTypeRepository.saveOnlyImage(noteTypeDto.getId(), image);
+    }
+
     public NoteTypeDto delete(int id) {
         Optional<NoteType> noteTypeOptional = noteTypeRepository.findById(id);
         if (noteTypeOptional.isPresent()) {
