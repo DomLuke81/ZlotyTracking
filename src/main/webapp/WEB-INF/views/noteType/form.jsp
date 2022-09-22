@@ -25,10 +25,11 @@
         <tr>
             <td>Wzór:</td>
             <td><img src="data:image/jpeg;base64,${noteTypeDto.image}" /></td>
-            <td><input type="file" name="file"/></td>
+            <td><input id="file-input" type="file" name="file" accept="image/jpeg"/><br/>Max. rozmiar pliku to 1 MB.</td>
         </tr>
         <tr>
             <td colspan="3">
+                <p id="file-message"></p>
                 <form:button type="submit">Zapisz</form:button>
             </td>
         </tr>
@@ -36,5 +37,6 @@
 </table>
 <p><a href="/admin/noteTypes">Wróć</a></p>
 <%@include file="../footer.jspf" %>
+<script src="/js/noteTypeFormImage.js" type="text/javascript"></script>
 </body>
 </html>
