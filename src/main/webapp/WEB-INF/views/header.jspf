@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 [Logo]<h2>Serwis śledzenia banknotów.</h2>
 <div>
@@ -13,11 +14,11 @@
                 <td><a href="/user">Panel</a></td>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-                Jesteś zalogowany jako: <sec:authentication property="principal.username"/>
-                <td><a href="/logout">Wyloguj</a></td>
+                <td>Jesteś zalogowany jako: <sec:authentication property="principal.username"/></td>
+                <td><a href="<c:url value="/logout"/>">Wyloguj</a></td>
             </sec:authorize>
             <sec:authorize access="!isAuthenticated()">
-                <td><a href="/login">Logowanie</a></td>
+                <td><a href="<c:url value="/login"/>">Logowanie</a></td>
                 <td><a href="/login/register">Rejestracja</a></td>
             </sec:authorize>
         </tr>
