@@ -1,12 +1,15 @@
 package pl.domluke.zlotytracking.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pl.domluke.zlotytracking.domain.LoggedUser;
 import pl.domluke.zlotytracking.domain.NoteTypeDto;
+import pl.domluke.zlotytracking.domain.User;
 import pl.domluke.zlotytracking.service.NoteTypeService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,4 +81,5 @@ public class NoteTypeController {
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
+
 }
