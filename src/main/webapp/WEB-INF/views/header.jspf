@@ -1,20 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 [Logo]<h2>Serwis śledzenia banknotów.</h2>
 <div>
-    <sec:authorize access="hasAuthority('ADMIN')">
-        <a href="/admin">Panel</a>
-        <a href="/admin/zipCodes">Kody pocztowe</a>
-        <a href="/admin/noteTypes">Emisje banknotów</a>
-    </sec:authorize>
-    <sec:authorize access="hasAuthority('USER')">
-        <a href="/user">Panel</a>
-    </sec:authorize>
-    <sec:authorize access="isAuthenticated()">
-        Jesteś zalogowany jako: <sec:authentication property="principal.username"/>
-        <a href="/logout">Wyloguj</a>
-    </sec:authorize>
-    <sec:authorize access="!isAuthenticated()">
-        <a href="/login">Logowanie</a>
-        <a href="/login/register">Rejestracja</a>
-    </sec:authorize>
+    <table width="100%">
+        <tbody>
+        <tr>
+            <sec:authorize access="hasAuthority('ADMIN')">
+                <td><a href="/admin">Panel</a></td>
+                <td><a href="/admin/zipCodes">Kody pocztowe</a></td>
+                <td><a href="/admin/noteTypes">Emisje banknotów</a></td>
+            </sec:authorize>
+            <sec:authorize access="hasAuthority('USER')">
+                <td><a href="/user">Panel</a></td>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                Jesteś zalogowany jako: <sec:authentication property="principal.username"/>
+                <td><a href="/logout">Wyloguj</a></td>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+                <td><a href="/login">Logowanie</a></td>
+                <td><a href="/login/register">Rejestracja</a></td>
+            </sec:authorize>
+        </tr>
+        </tbody>
+    </table>
 </div>

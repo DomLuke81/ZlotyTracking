@@ -14,7 +14,7 @@
         <form:hidden path="active"/>
         <tr>
             <td>Nominał:</td>
-            <td><form:input path="denomination" type="number" min="10" max="2000000000"/></td>
+            <td><form:input path="denomination" type="number" min="10" max="2000000000" autofocus="true" /></td>
             <td><form:errors path="denomination" cssClass="error"/></td>
         </tr>
         <tr>
