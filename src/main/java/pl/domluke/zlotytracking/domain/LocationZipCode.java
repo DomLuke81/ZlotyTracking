@@ -1,7 +1,5 @@
 package pl.domluke.zlotytracking.domain;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

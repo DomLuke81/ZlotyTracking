@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Edycja emisji banknotów</title>
@@ -36,6 +36,6 @@
 </table>
 <p><a href="/admin/noteTypes">Wróć</a></p>
 <%@include file="../footer.jspf" %>
-<script src="/js/noteTypeFormImage.js" type="text/javascript"></script>
+<script src="<c:url value="/js/noteTypeFormImage.js"/>" type="text/javascript"></script>
 </body>
 </html>
