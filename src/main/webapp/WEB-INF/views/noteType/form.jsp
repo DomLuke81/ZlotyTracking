@@ -7,7 +7,6 @@
 </head>
 <body>
 <%@include file="../header.jspf" %>
-<c:if test="${message != null}">${message}</c:if>
 <table>
     <form:form method="post" modelAttribute="noteTypeDto" enctype="multipart/form-data">
         <form:hidden path="id"/>
@@ -29,7 +28,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <p id="file-message"></p>
+                <p id="file-message"><c:if test="${message != null}"> ${message}</c:if></p>
                 <form:button type="submit">Zapisz</form:button>
             </td>
         </tr>

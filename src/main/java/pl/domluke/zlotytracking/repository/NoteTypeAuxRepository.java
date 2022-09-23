@@ -8,6 +8,4 @@ public interface NoteTypeAuxRepository {
 
     boolean saveOnlyImage(int id, byte[] image);
 
-    boolean deleteImage(int id);
-
 }

@@ -45,8 +45,4 @@ public class NoteTypeAuxRepositoryImpl implements NoteTypeAuxRepository {
                 .executeUpdate()) == 1;
     }
 
-    @Override
-    public boolean deleteImage(int id) {
-        return false;
-    }
 }

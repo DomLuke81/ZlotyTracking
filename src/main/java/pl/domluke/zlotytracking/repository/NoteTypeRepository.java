@@ -21,5 +21,5 @@ public interface NoteTypeRepository extends JpaRepository<NoteType, Integer>, No
 
     Page<NoteType> findAllByOrderByDenominationAscEditionAsc(Pageable pageable);
 
-    Optional<NoteType> findNoteTypeByDenominationAndEdition(int denomination, short edition);
+    Optional<NoteType> findFirstByDenominationAndEdition(int denomination, short edition);
 }

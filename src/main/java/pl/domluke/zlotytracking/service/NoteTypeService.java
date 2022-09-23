@@ -47,7 +47,7 @@ public class NoteTypeService {
 
     public boolean addImageToNoteType(NoteTypeDto noteTypeDto, byte[] image) {
         if (noteTypeDto.getId() == 0) {
-            Optional<NoteType> noteTypeOptional = noteTypeRepository.findNoteTypeByDenominationAndEdition(
+            Optional<NoteType> noteTypeOptional = noteTypeRepository.findFirstByDenominationAndEdition(
                     noteTypeDto.getDenomination(), noteTypeDto.getEdition());
             if (noteTypeOptional.isEmpty()) {
                 return false;
@@ -66,5 +66,11 @@ public class NoteTypeService {
             return noteType.toDto();
         }
         return null;
+    }
+
+    public boolean isPresent(NoteTypeDto noteTypeDto) {
+        return noteTypeRepository
+                .findFirstByDenominationAndEdition(noteTypeDto.getDenomination(), noteTypeDto.getEdition())
+                .isPresent();
     }
 }

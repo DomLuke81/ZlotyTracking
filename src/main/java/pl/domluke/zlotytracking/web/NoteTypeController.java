@@ -48,6 +48,12 @@ public class NoteTypeController {
         if (bindingResult.hasErrors()) {
             return "noteType/form";
         }
+        if (noteTypeDto.getId() == 0 && noteTypeService.isPresent(noteTypeDto)) {
+            StringBuilder message = new StringBuilder("Już jest emisja ").append(noteTypeDto.getEdition())
+                            .append(" banknotu ").append(noteTypeDto.getDenomination());
+            model.addAttribute("message", message);
+            return "noteType/form";
+        }
         if (!noteTypeService.saveWithoutImage(noteTypeDto)) {
             model.addAttribute("message", "Błąd! Nie zapisano rekordu.");
             return "noteType/form";
