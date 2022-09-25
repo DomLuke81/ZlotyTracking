@@ -16,4 +16,5 @@ public class UserController {
         model.addAttribute("user", loggedUser.getUser());
         return "user/home";
     }
+
 }

@@ -41,7 +41,7 @@ public class NoteTypeController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editNoteType(@Valid NoteTypeDto noteTypeDto,
+    public String saveNoteType(@Valid NoteTypeDto noteTypeDto,
                                BindingResult bindingResult,
                                @RequestParam MultipartFile file,
                                Model model) {

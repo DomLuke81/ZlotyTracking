@@ -75,4 +75,5 @@ public class NoteTypeDto {
         noteType.setActive(active);
         return noteType;
     }
+
 }

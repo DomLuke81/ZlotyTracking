@@ -7,13 +7,11 @@
 </head>
 <body>
 <%@include file="../header.jspf" %>
-Strona użytkownika:
-<p>Id: ${user.id}</p>
-<p>Pass: ${user.password}</p>
-<p>accountNonExpired: ${user.firstName}</p>
-<p>accountNonLocked: ${user.email}</p>
-<p>credentialsNonExpired: ${user.active}</p>
-<p>authorities: <c:forEach items="${user.roles}" var="item">${item.role}</c:forEach></p>
+
+<h2>Moje ostatnio wprowadzone banknoty</h2>
+<p><a href="/user/notes/edit/0">Dodaj nowy banknot...</a></p>
+
+
 <%@include file="../footer.jspf" %>
 </body>
 </html>
