@@ -13,20 +13,24 @@
         <tr>
             <td>Nominał:</td>
             <td>
-                <form:radiobuttons path="noteTypeDto" items="${noteTypes}" itemValue="id" itemLabel="denomination" />
+                <c:forEach items="${noteTypes}" var="noteType">
+                    <form:radiobutton id="noteType${noteType.id}" path="noteTypeDto" value="${noteType.id}"/>
+                    <label for="noteType${noteType.id}">
+                        <img src="data:image/jpeg;base64,${noteType.image}" alt="${noteType.denomination}" width="125"/>
+                    </label>
+                </c:forEach>
             </td>
             <td><form:errors path="noteTypeDto" cssClass="error"/></td>
         </tr>
-<%--        <tr>--%>
-<%--            <td>Emisja:</td>--%>
-<%--            <td><form:input path="edition" type="number" min="1994" max="2050"/></td>--%>
-<%--            <td><form:errors path="edition" cssClass="error"/></td>--%>
-<%--        </tr>--%>
+        <%--        <tr>--%>
+        <%--            <td>Emisja:</td>--%>
+        <%--            <td><form:input path="edition" type="number" min="1994" max="2050"/></td>--%>
+        <%--            <td><form:errors path="edition" cssClass="error"/></td>--%>
+        <%--        </tr>--%>
 
 
         <tr>
             <td colspan="3">
-                <p id="file-message"><c:if test="${message != null}"> ${message}</c:if></p>
                 <form:button type="submit">Zapisz</form:button>
             </td>
         </tr>

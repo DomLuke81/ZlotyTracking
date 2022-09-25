@@ -21,10 +21,9 @@ public class NoteSpotController {
     @GetMapping("/edit/{id}")
     public String editForm(Model model, @PathVariable long id) {
         model.addAttribute("noteSpotDto", new NoteSpotDto());
-        model.addAttribute("noteTypes", noteTypeService.getLast5Entries());
+        model.addAttribute("noteTypes", noteTypeService.getDenominations());
         return "user/noteForm";
     }
-
 
 
     @PostMapping("/edit/{id}")

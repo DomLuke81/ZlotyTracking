@@ -29,6 +29,13 @@ public class NoteTypeService {
                 .collect(Collectors.toList());
     }
 
+    //getting only one item for every denomination
+    public List<NoteTypeDto> getDenominations() {
+        return noteTypeRepository.getLastForEveryDenominations()
+                .stream().map(NoteType::toDto)
+                .collect(Collectors.toList());
+    }
+
     public Page<NoteTypeDto> getAllOnPages(int page, int itemsOnPage) {
         Page<NoteType> pages = noteTypeRepository.findAllByOrderByDenominationAscEditionAsc(PageRequest.of(page, itemsOnPage));
         List<NoteTypeDto> noteTypeDtoList = pages.getContent().stream().map(NoteType::toDto).collect(Collectors.toList());
