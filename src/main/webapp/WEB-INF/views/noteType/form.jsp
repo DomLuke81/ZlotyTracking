@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td>Wzór:</td>
-            <td><img src="data:image/jpeg;base64,${noteTypeDto.image}" /></td>
+            <td><img id="image" src="data:image/jpeg;base64,${noteTypeDto.image}" /></td>
             <td><input id="file-input" type="file" name="file" accept="image/jpeg"/><br/>Max. rozmiar pliku to 1 MB.</td>
         </tr>
         <tr>
