@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/login", "/login/register", "/json").anonymous()
+                .antMatchers("/login", "/login/register", "/json/**").anonymous()
                 .antMatchers("/login/redirect").authenticated()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAuthority("USER")

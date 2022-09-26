@@ -25,4 +25,6 @@ public interface NoteTypeRepository extends JpaRepository<NoteType, Integer>, No
     @Query(value = "SELECT * FROM note_type WHERE id IN (SELECT MAX(id) FROM note_type GROUP BY denomination)",
             nativeQuery = true)
     List<NoteType> getLastForEveryDenominations();
+
+    List<NoteType> getNoteTypesByDenomination(int denomination);
 }

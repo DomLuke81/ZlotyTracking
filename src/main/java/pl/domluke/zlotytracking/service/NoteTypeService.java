@@ -36,6 +36,13 @@ public class NoteTypeService {
                 .collect(Collectors.toList());
     }
 
+    public List<NoteTypeDto> getEditionsOfDenomination(int denomination) {
+        return noteTypeRepository.getNoteTypesByDenomination(denomination)
+                .stream()
+                .map(NoteType::toDto)
+                .collect(Collectors.toList());
+    }
+
     public Page<NoteTypeDto> getAllOnPages(int page, int itemsOnPage) {
         Page<NoteType> pages = noteTypeRepository.findAllByOrderByDenominationAscEditionAsc(PageRequest.of(page, itemsOnPage));
         List<NoteTypeDto> noteTypeDtoList = pages.getContent().stream().map(NoteType::toDto).collect(Collectors.toList());
