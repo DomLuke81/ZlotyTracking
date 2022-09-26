@@ -28,14 +28,13 @@ function drawEditionRadios(noteTypes) {
     noteTypes.forEach(function (noteType) {
         const newRadio = document.createElement("input");
         newRadio.setAttribute("type", "radio");
-        newRadio.setAttribute("path", "noteTypeDto")
-        newRadio.setAttribute("name", "editionRadios");
-        newRadio.setAttribute("id", "noteTypeEdition" + noteType.id);
+        newRadio.setAttribute("name", "noteTypeDto.id");
+        newRadio.setAttribute("id", "noteTypeDto" + noteType.id);
         newRadio.setAttribute("value", noteType.id);
         tdEdition.append(newRadio);
 
         const newLabel = document.createElement("label");
-        newLabel.setAttribute("for", "noteTypeEdition" + noteType.id);
+        newLabel.setAttribute("for", "noteTypeDto" + noteType.id);
         newLabel.innerText = noteType.edition + " ";
         tdEdition.append(newLabel);
 

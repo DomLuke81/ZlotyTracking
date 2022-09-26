@@ -34,10 +34,10 @@ public class NoteSpotController {
     public String saveNoteSpot(@Valid NoteSpotDto noteSpotDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             loadDataForFormToModel(model);
-            model.addAttribute("message", noteSpotDto.getNoteTypeDto());
+            model.addAttribute("message", noteSpotDto.getNoteTypeDto().getId());
             return "user/noteForm";
         }
-        model.addAttribute("message", noteSpotDto.getNoteTypeDto().getDenomination());
+        //save
         return "user/noteForm";
     }
 }
