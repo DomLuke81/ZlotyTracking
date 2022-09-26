@@ -14,7 +14,7 @@
             <td>Nominał:</td>
             <td>
                 <c:forEach items="${noteTypes}" var="noteType">
-                    <form:radiobutton id="noteType${noteType.id}" path="noteTypeDto" value="${noteType.id}"/>
+                    <form:radiobutton id="noteType${noteType.id}" path="noteTypeDto.id" value="${noteType.id}" />
                     <label for="noteType${noteType.id}">
                         <img src="data:image/jpeg;base64,${noteType.image}" alt="${noteType.denomination}" width="125"/>
                     </label>
@@ -31,6 +31,7 @@
 
         <tr>
             <td colspan="3">
+                <p id="message-box"><c:if test="${message != null}"> ${message}</c:if></p>
                 <form:button type="submit">Zapisz</form:button>
             </td>
         </tr>
