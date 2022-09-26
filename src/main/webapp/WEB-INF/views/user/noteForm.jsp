@@ -14,8 +14,8 @@
             <td>Nominał:</td>
             <td>
                 <c:forEach items="${noteTypes}" var="noteType">
-                    <form:radiobutton id="noteType${noteType.id}" path="noteTypeDto.id" value="${noteType.id}" />
-                    <label for="noteType${noteType.id}">
+                    <input type="radio" id="noteTypeDenomination${noteType.id}" name="denominationRadios" class="denominationRadios" value="${noteType.denomination}" />
+                    <label for="noteTypeDenomination${noteType.id}">
                         <img src="data:image/jpeg;base64,${noteType.image}" alt="${noteType.denomination}" width="125"/>
                     </label>
                 </c:forEach>
@@ -24,13 +24,13 @@
         </tr>
         <tr>
             <td>Emisja:</td>
-            <td id="edition-cell">????</td>
+            <td id="edition-cell"></td>
         </tr>
-        <%--        <tr>--%>
-        <%--            <td>Emisja:</td>--%>
-        <%--            <td><form:input path="edition" type="number" min="1994" max="2050"/></td>--%>
-        <%--            <td><form:errors path="edition" cssClass="error"/></td>--%>
-        <%--        </tr>--%>
+                <tr>
+                    <td>Notatka:</td>
+                    <td><form:input path="description"/></td>
+                    <td><form:errors path="description" cssClass="error"/></td>
+                </tr>
 
 
         <tr>
@@ -43,5 +43,6 @@
 </table>
 <p><a href="/admin/noteTypes">Wróć</a></p>
 <%@include file="../footer.jspf" %>
+<script src="<c:url value="/js/noteSpotForm.js"/>" type="text/javascript"></script>
 </body>
 </html>
