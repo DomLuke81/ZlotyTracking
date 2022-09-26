@@ -20,7 +20,11 @@
                     </label>
                 </c:forEach>
             </td>
-            <td><form:errors path="noteTypeDto" cssClass="error"/></td>
+            <td rowspan="2"><form:errors path="noteTypeDto" cssClass="error"/></td>
+        </tr>
+        <tr>
+            <td>Emisja:</td>
+            <td id="edition-cell">????</td>
         </tr>
         <%--        <tr>--%>
         <%--            <td>Emisja:</td>--%>
