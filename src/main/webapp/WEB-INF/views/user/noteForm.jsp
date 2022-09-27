@@ -13,7 +13,6 @@
         <tr>
             <td>Nominał:</td>
             <td>
-                    ${noteSpotDto.denominationRadios}
                 <c:forEach items="${noteTypes}" var="noteType">
                     <input type="radio" id="noteTypeDenomination${noteType.id}" name="denominationRadios"
                            class="denominationRadios" value="${noteType.denomination}"
@@ -34,7 +33,8 @@
         </tr>
         <tr>
             <td>Numer seryjny:</td>
-            <td><form:input path="noteSerialNumber" maxlength="9" pattern="[A-z]{2}\d{7}" placeholder="AA0000000"/></td>
+            <td><form:input path="noteSerialNumber" maxlength="9" pattern="[A-z]{2}\d{7}" placeholder="AA0000000"
+                            required="required"/></td>
             <td><form:errors path="noteSerialNumber" cssClass="error"/></td>
         </tr>
         <tr>

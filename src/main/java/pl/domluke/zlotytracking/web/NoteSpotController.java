@@ -32,12 +32,14 @@ public class NoteSpotController {
 
     @PostMapping("/edit/{id}")
     public String saveNoteSpot(@Valid NoteSpotDto noteSpotDto, BindingResult bindingResult, Model model) {
+        noteSpotDto.setNoteSerialNumber(noteSpotDto.getNoteSerialNumber());
         if (bindingResult.hasErrors()) {
             loadDataForFormToModel(model);
             model.addAttribute("message", noteSpotDto.getDenominationRadios());
             return "user/noteForm";
         }
         //save
+        model.addAttribute("message", "zapisano");
         return "user/noteForm";
     }
 }
