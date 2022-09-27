@@ -31,13 +31,13 @@ public class NoteTypeService {
 
     //getting only one item for every denomination
     public List<NoteTypeDto> getDenominations() {
-        return noteTypeRepository.getLastForEveryDenominations()
+        return noteTypeRepository.getLastForEveryDenominationsAndActiveIsTrue()
                 .stream().map(NoteType::toDto)
                 .collect(Collectors.toList());
     }
 
     public List<NoteTypeDto> getEditionsOfDenomination(int denomination) {
-        return noteTypeRepository.getNoteTypesByDenomination(denomination)
+        return noteTypeRepository.getNoteTypesByDenominationAndActiveIsTrue(denomination)
                 .stream()
                 .map(NoteType::toDto)
                 .collect(Collectors.toList());

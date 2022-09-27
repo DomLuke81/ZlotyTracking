@@ -22,9 +22,9 @@ public interface NoteTypeRepository extends JpaRepository<NoteType, Integer>, No
 
     Optional<NoteType> findFirstByDenominationAndEdition(int denomination, short edition);
 
-    @Query(value = "SELECT * FROM note_type WHERE id IN (SELECT MAX(id) FROM note_type GROUP BY denomination)",
+    @Query(value = "SELECT * FROM note_type WHERE id IN (SELECT MAX(id) FROM note_type WHERE active = true GROUP BY denomination)",
             nativeQuery = true)
-    List<NoteType> getLastForEveryDenominations();
+    List<NoteType> getLastForEveryDenominationsAndActiveIsTrue();
 
-    List<NoteType> getNoteTypesByDenomination(int denomination);
+    List<NoteType> getNoteTypesByDenominationAndActiveIsTrue(int denomination);
 }

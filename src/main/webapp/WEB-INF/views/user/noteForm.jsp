@@ -25,15 +25,14 @@
         </tr>
         <tr>
             <td>Emisja:</td>
-            <td id="edition-cell"></td>
+            <td id="edition-cell">
+            </td>
         </tr>
         <tr>
             <td>Notatka:</td>
             <td><form:input path="description"/></td>
             <td><form:errors path="description" cssClass="error"/></td>
         </tr>
-
-
         <tr>
             <td colspan="3">
                 <p id="message-box"><c:if test="${message != null}"> ${message}</c:if></p>
