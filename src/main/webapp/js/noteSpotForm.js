@@ -1,11 +1,15 @@
 let tdEdition = document.getElementById("edition-cell");
-
 let denominationRadios = document.querySelectorAll(".denominationRadios")
+
 denominationRadios.forEach(function (radio) {
     radio.addEventListener("click", function (event) {
         getEditions(event.target.value);
     })
+    if (radio.hasAttribute("checked")) {
+        getEditions(radio.value);
+    }
 })
+
 
 function getEditions(denomination) {
     fetch("http://localhost:8080/json/edition/" + denomination, {method: 'GET'})
@@ -24,13 +28,24 @@ function getEditions(denomination) {
 }
 
 function drawEditionRadios(noteTypes) {
+    //przechwycenie pola hidden z id wybranego banknotu
+    let prevCheckedNote = document.querySelector("#noteTypeDtoId");
+    if (prevCheckedNote != null) {
+        prevCheckedNote = prevCheckedNote.value;
+    }
+    //wyzerowanie pola
     tdEdition.innerText = "";
+
     noteTypes.forEach(function (noteType) {
         const newRadio = document.createElement("input");
         newRadio.setAttribute("type", "radio");
         newRadio.setAttribute("name", "noteTypeDto.id");
         newRadio.setAttribute("id", "noteTypeDto" + noteType.id);
         newRadio.setAttribute("value", noteType.id);
+        newRadio.setAttribute("required", "");
+        if (prevCheckedNote == noteType.id) {
+            newRadio.setAttribute("checked", "");
+        }
         tdEdition.append(newRadio);
 
         const newLabel = document.createElement("label");

@@ -13,9 +13,12 @@
         <tr>
             <td>Nominał:</td>
             <td>
+                    ${noteSpotDto.denominationRadios}
                 <c:forEach items="${noteTypes}" var="noteType">
                     <input type="radio" id="noteTypeDenomination${noteType.id}" name="denominationRadios"
-                           class="denominationRadios" value="${noteType.denomination}"/>
+                           class="denominationRadios" value="${noteType.denomination}"
+                           <c:if test="${noteSpotDto.denominationRadios == noteType.denomination}">checked</c:if>
+                     required/>
                     <label for="noteTypeDenomination${noteType.id}">
                         <img src="data:image/jpeg;base64,${noteType.image}" alt="${noteType.denomination}" width="125"/>
                     </label>
@@ -26,7 +29,13 @@
         <tr>
             <td>Emisja:</td>
             <td id="edition-cell">
+                <input type="hidden" id="noteTypeDtoId" value="${noteSpotDto.noteTypeDto.id}"/>
             </td>
+        </tr>
+        <tr>
+            <td>Numer seryjny:</td>
+            <td><form:input path="noteSerialNumber" maxlength="9" pattern="[A-z]{2}\d{7}" placeholder="AA0000000"/></td>
+            <td><form:errors path="noteSerialNumber" cssClass="error"/></td>
         </tr>
         <tr>
             <td>Notatka:</td>

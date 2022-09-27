@@ -34,7 +34,7 @@ public class NoteSpotController {
     public String saveNoteSpot(@Valid NoteSpotDto noteSpotDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             loadDataForFormToModel(model);
-            model.addAttribute("message", noteSpotDto.getNoteTypeDto().getId());
+            model.addAttribute("message", noteSpotDto.getDenominationRadios());
             return "user/noteForm";
         }
         //save

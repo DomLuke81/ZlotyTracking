@@ -12,8 +12,11 @@ public class NoteSpotDto {
     @NotNull
     private NoteTypeDto noteTypeDto;
 
+    //to keep information for noteSpotForm
+    private int denominationRadios;
+
     @NotNull
-    @Pattern(regexp = "[A-Z]{2}\\d{7}")
+    @Pattern(regexp = "[A-z]{2}\\d{7}")
     private String noteSerialNumber;
 
     @NotNull
@@ -71,5 +74,13 @@ public class NoteSpotDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getDenominationRadios() {
+        return denominationRadios;
+    }
+
+    public void setDenominationRadios(int denominationRadios) {
+        this.denominationRadios = denominationRadios;
     }
 }

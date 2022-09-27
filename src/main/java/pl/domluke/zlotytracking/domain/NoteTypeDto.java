@@ -4,6 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class NoteTypeDto {
     private int id;
@@ -76,4 +77,16 @@ public class NoteTypeDto {
         return noteType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NoteTypeDto that = (NoteTypeDto) o;
+        return denomination == that.denomination && edition == that.edition;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(denomination, edition);
+    }
 }
