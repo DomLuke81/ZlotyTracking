@@ -43,4 +43,8 @@ public class LocationZipCodeService {
         }
         return locationZipCode;
     }
+
+    public List<String> getVoivodeships() {
+        return zipCodeRepository.findAllVoivodeships();
+    }
 }

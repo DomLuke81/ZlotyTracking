@@ -12,7 +12,7 @@
         <form:hidden path="id"/>
         <tr>
             <td>Nominał:</td>
-            <td>
+            <td colspan="4">
                 <c:forEach items="${noteTypes}" var="noteType">
                     <input type="radio" id="noteTypeDenomination${noteType.id}" name="denominationRadios"
                            class="denominationRadios" value="${noteType.denomination}"
@@ -27,23 +27,39 @@
         </tr>
         <tr>
             <td>Emisja:</td>
-            <td id="edition-cell">
+            <td id="edition-cell" colspan="4">
                 <input type="hidden" id="noteTypeDtoId" value="${noteSpotDto.noteTypeDto.id}"/>
             </td>
         </tr>
         <tr>
             <td>Numer seryjny:</td>
-            <td><form:input path="noteSerialNumber" maxlength="9" pattern="[A-z]{2}\d{7}" placeholder="AA0000000"
+            <td colspan="4"><form:input path="noteSerialNumber" maxlength="9" pattern="[A-z]{2}\d{7}" placeholder="AA0000000"
                             required="required"/></td>
             <td><form:errors path="noteSerialNumber" cssClass="error"/></td>
         </tr>
         <tr>
+            <td>Lokalizacja:<br/><small>(Gdzie dostałeś banknot?)</small></td>
+            <td>kod pocztowy:</td>
+            <td>
+                <label for="voivodeships">województwo:</label>
+                <select name="voivodeships" id="voivodeships">
+                    <option value="">--wybierz województwo</option>
+                    <c:forEach items="${voivodeships}" var="v">
+                        <option value="${v}">${v}</option>
+                    </c:forEach>
+                </select>
+            </td>
+            <td>powiat</td>
+            <td>miejscowość</td>
+            <td><form:errors path="zipCode" cssClass="error"/></td>
+        </tr>
+        <tr>
             <td>Notatka:</td>
-            <td><form:input path="description"/></td>
+            <td colspan="4"><form:input path="description"/></td>
             <td><form:errors path="description" cssClass="error"/></td>
         </tr>
         <tr>
-            <td colspan="3">
+            <td colspan="6">
                 <p id="message-box"><c:if test="${message != null}"> ${message}</c:if></p>
                 <form:button type="submit">Zapisz</form:button>
             </td>

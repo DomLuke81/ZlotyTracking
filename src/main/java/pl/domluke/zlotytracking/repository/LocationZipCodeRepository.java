@@ -18,4 +18,9 @@ public interface LocationZipCodeRepository extends JpaRepository<LocationZipCode
     List<LocationZipCode> findLastLimitedTo(int numberOfEntries);
 
     Page<LocationZipCode> findAllByOrderByZipCode(Pageable pageable);
+
+    @Query(value = "SELECT distinct zc.voivodeship FROM LocationZipCode zc WHERE zc.active = true ORDER BY zc.voivodeship")
+    List<String> findAllVoivodeships();
+
+
 }

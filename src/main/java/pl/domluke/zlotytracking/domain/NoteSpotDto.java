@@ -12,7 +12,7 @@ public class NoteSpotDto {
     @NotNull
     private NoteTypeDto noteTypeDto;
 
-    //to keep information for noteSpotForm
+    //to keep information for noteSpotForm what not was chosen
     private int denominationRadios;
 
     @NotNull
