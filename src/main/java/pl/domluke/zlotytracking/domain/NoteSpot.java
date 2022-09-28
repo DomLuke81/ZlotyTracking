@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "note_spot")
@@ -89,7 +90,7 @@ public class NoteSpot {
         noteSpotDto.setNoteTypeDto(note == null ? null : note.getEmisja().toDto());
         noteSpotDto.setNoteSerialNumber(note == null ? null : note.getSerialNumber());
         noteSpotDto.setPlace(zipCode);
-        noteSpotDto.setSpotTime(spotTime);
+        noteSpotDto.setSpotTime(spotTime.format(DateTimeFormatter.ISO_LOCAL_DATE));
         noteSpotDto.setDescription(description);
         return noteSpotDto;
     }

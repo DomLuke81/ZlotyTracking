@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.time.ZonedDateTime;
 
 public class NoteSpotDto {
     private long id;
@@ -22,7 +21,7 @@ public class NoteSpotDto {
     @NotNull
     private LocationZipCode place;
 
-    private ZonedDateTime spotTime;
+    private String spotTime;
 
     @Column
     @Size(max = 255)
@@ -60,11 +59,11 @@ public class NoteSpotDto {
         this.place = place;
     }
 
-    public ZonedDateTime getSpotTime() {
+    public String getSpotTime() {
         return spotTime;
     }
 
-    public void setSpotTime(ZonedDateTime spotTime) {
+    public void setSpotTime(String spotTime) {
         this.spotTime = spotTime;
     }
 

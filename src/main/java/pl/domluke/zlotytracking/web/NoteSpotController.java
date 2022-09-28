@@ -53,7 +53,7 @@ public class NoteSpotController {
         }
         //save
         loadDataForFormToModel(model);
-        model.addAttribute("message", "zapisano");
+        model.addAttribute("message", noteSpotDto.getSpotTime());
         return "user/noteForm";
     }
 }

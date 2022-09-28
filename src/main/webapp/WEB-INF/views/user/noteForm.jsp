@@ -76,8 +76,13 @@
             <td><form:errors path="place" cssClass="error"/></td>
         </tr>
         <tr>
+            <td>Czas:</td>
+            <td colspan="4"><form:input type="date" path="spotTime" required="required"/></td>
+            <td><form:errors path="spotTime" cssClass="error"/></td>
+        </tr>
+        <tr>
             <td>Notatka:</td>
-            <td colspan="4"><form:input path="description"/></td>
+            <td colspan="4"><form:input path="description" size="100" maxlength="255"/></td>
             <td><form:errors path="description" cssClass="error"/></td>
         </tr>
         <tr>
