@@ -39,24 +39,38 @@
         </tr>
         <tr>
             <td>Lokalizacja:<br/><small>(Gdzie dostałeś banknot?)</small></td>
-            <td>kod pocztowy:</td>
+            <td><s>kod pocztowy:</s></td>
             <td>
                 <label for="voivodeships">województwo:</label><br/>
                 <select name="voivodeships" id="voivodeships">
                     <option value="">--wybierz województwo--</option>
                     <c:forEach items="${voivodeships}" var="v">
-                        <option value="${v}">${v}</option>
+                        <option value="${v}" ${v == noteSpotDto.place.voivodeship ? "selected" : ""}>${v}</option>
                     </c:forEach>
                 </select>
             </td>
             <td>
                 <label for="counties">powiat:</label><br/>
                 <select name="counties" id="counties">
+                    <c:if test="${counties != null}">
+                        <option value="">--wybierz powiat--</option>
+                        <c:forEach items="${counties}" var="c">
+                            <option value="${c}" ${c == noteSpotDto.place.county ? "selected" : ""}>${c}</option>
+                        </c:forEach>
+                    </c:if>
                 </select>
             </td>
             <td>
                 <label for="place">miejscowość:</label><br/>
                 <select name="place" id="place" required>
+                    <c:if test="${places != null}">
+                        <option value="">--wybierz miejscowość--</option>
+                        <c:forEach items="${places}" var="p">
+                            <option value="${p.id}" ${p.place == noteSpotDto.place.place ? "selected" : ""}>
+                                    ${p.place}
+                            </option>
+                        </c:forEach>
+                    </c:if>
                 </select>
             </td>
             <td><form:errors path="place" cssClass="error"/></td>
