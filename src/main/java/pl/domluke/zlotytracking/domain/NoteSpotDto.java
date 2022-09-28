@@ -20,7 +20,7 @@ public class NoteSpotDto {
     private String noteSerialNumber;
 
     @NotNull
-    private LocationZipCode zipCode;
+    private LocationZipCode place;
 
     private ZonedDateTime spotTime;
 
@@ -52,12 +52,12 @@ public class NoteSpotDto {
         this.noteSerialNumber = noteSerialNumber;
     }
 
-    public LocationZipCode getZipCode() {
-        return zipCode;
+    public LocationZipCode getPlace() {
+        return place;
     }
 
-    public void setZipCode(LocationZipCode zipCode) {
-        this.zipCode = zipCode;
+    public void setPlace(LocationZipCode place) {
+        this.place = place;
     }
 
     public ZonedDateTime getSpotTime() {

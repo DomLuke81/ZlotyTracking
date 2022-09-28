@@ -1,5 +1,6 @@
-let tdEdition = document.getElementById("edition-cell");
-let denominationRadios = document.querySelectorAll(".denominationRadios")
+//obsługa wyboru banknotów
+const tdEdition = document.getElementById("edition-cell");
+const denominationRadios = document.querySelectorAll(".denominationRadios")
 
 denominationRadios.forEach(function (radio) {
     radio.addEventListener("click", function (event) {
@@ -9,7 +10,6 @@ denominationRadios.forEach(function (radio) {
         getEditions(radio.value);
     }
 })
-
 
 function getEditions(denomination) {
     fetch("http://localhost:8080/json/edition/" + denomination, {method: 'GET'})
@@ -59,5 +59,46 @@ function drawEditionRadios(noteTypes) {
         newImg.setAttribute("width", "250");
         newLabel.append(newImg);
     })
+}
 
+//obsługa lokalizacji
+const voivodeshipSelect = document.getElementById("voivodeships");
+const countySelect = document.getElementById("counties");
+
+voivodeshipSelect.addEventListener("change", function () {
+    if (this.value !== "") {
+        getCounties(this.value);
+    }
+});
+
+function getCounties(voivodeship) {
+    fetch("http://localhost:8080/json/counties/" + voivodeship, {method: 'GET'})
+        .then(function (response) {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Ooops")
+        })
+        .then(function (data) {
+            fillCountiesSelect(data);
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+}
+
+function fillCountiesSelect(counties) {
+    countySelect.innerText = "";
+
+    let countyOption = document.createElement("option");
+    countyOption.setAttribute("value", "");
+    countyOption.innerText = "--wybierz powiat--";
+    countySelect.append(countyOption);
+
+    counties.forEach(function (county){
+        countyOption = document.createElement("option");
+        countyOption.setAttribute("value", county);
+        countyOption.innerText = county;
+        countySelect.append(countyOption);
+    })
 }

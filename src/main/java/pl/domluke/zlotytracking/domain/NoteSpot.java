@@ -88,7 +88,7 @@ public class NoteSpot {
         noteSpotDto.setId(id);
         noteSpotDto.setNoteTypeDto(note == null ? null : note.getEmisja().toDto());
         noteSpotDto.setNoteSerialNumber(note == null ? null : note.getSerialNumber());
-        noteSpotDto.setZipCode(zipCode);
+        noteSpotDto.setPlace(zipCode);
         noteSpotDto.setSpotTime(spotTime);
         noteSpotDto.setDescription(description);
         return noteSpotDto;

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.domluke.zlotytracking.domain.NoteTypeDto;
+import pl.domluke.zlotytracking.service.LocationZipCodeService;
 import pl.domluke.zlotytracking.service.NoteTypeService;
 
 import java.util.List;
@@ -14,15 +15,21 @@ import java.util.List;
 @RequestMapping("/json")
 public class JsonController {
     private final NoteTypeService noteTypeService;
+    private final LocationZipCodeService locationService;
 
     @Autowired
-    public JsonController(NoteTypeService noteTypeService) {
+    public JsonController(NoteTypeService noteTypeService, LocationZipCodeService locationService) {
         this.noteTypeService = noteTypeService;
+        this.locationService = locationService;
     }
 
     @GetMapping("/edition/{denomination}")
-    public List<NoteTypeDto> getEditionsOfDenomination (@PathVariable int denomination) {
+    public List<NoteTypeDto> getEditionsOfDenomination(@PathVariable int denomination) {
         return noteTypeService.getEditionsOfDenomination(denomination);
     }
 
+    @GetMapping("/counties/{voivodeship}")
+    public List<String> getCountiesOfVoivodeship(@PathVariable String voivodeship) {
+        return locationService.getCounties(voivodeship);
+    }
 }

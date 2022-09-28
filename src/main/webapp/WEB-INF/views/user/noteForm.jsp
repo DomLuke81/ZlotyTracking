@@ -41,17 +41,25 @@
             <td>Lokalizacja:<br/><small>(Gdzie dostałeś banknot?)</small></td>
             <td>kod pocztowy:</td>
             <td>
-                <label for="voivodeships">województwo:</label>
+                <label for="voivodeships">województwo:</label><br/>
                 <select name="voivodeships" id="voivodeships">
-                    <option value="">--wybierz województwo</option>
+                    <option value="">--wybierz województwo--</option>
                     <c:forEach items="${voivodeships}" var="v">
                         <option value="${v}">${v}</option>
                     </c:forEach>
                 </select>
             </td>
-            <td>powiat</td>
-            <td>miejscowość</td>
-            <td><form:errors path="zipCode" cssClass="error"/></td>
+            <td>
+                <label for="counties">powiat:</label><br/>
+                <select name="counties" id="counties">
+                </select>
+            </td>
+            <td>
+                <label for="place">miejscowość:</label><br/>
+                <select name="place" id="place">
+                </select>
+            </td>
+            <td><form:errors path="place" cssClass="error"/></td>
         </tr>
         <tr>
             <td>Notatka:</td>

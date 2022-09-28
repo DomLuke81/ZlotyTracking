@@ -47,4 +47,8 @@ public class LocationZipCodeService {
     public List<String> getVoivodeships() {
         return zipCodeRepository.findAllVoivodeships();
     }
+
+    public List<String> getCounties(String voivodeship) {
+        return zipCodeRepository.findAllCounties(voivodeship);
+    }
 }

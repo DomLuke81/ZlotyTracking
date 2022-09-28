@@ -22,5 +22,8 @@ public interface LocationZipCodeRepository extends JpaRepository<LocationZipCode
     @Query(value = "SELECT distinct zc.voivodeship FROM LocationZipCode zc WHERE zc.active = true ORDER BY zc.voivodeship")
     List<String> findAllVoivodeships();
 
+    @Query(value = "SELECT distinct zc.county FROM LocationZipCode zc WHERE zc.active = true " +
+            "and zc.voivodeship = :voivodeship ORDER BY zc.county")
+    List<String> findAllCounties(String voivodeship);
 
 }
