@@ -6,9 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import pl.domluke.zlotytracking.domain.LocationZipCode;
 import pl.domluke.zlotytracking.repository.LocationZipCodeRepository;
-
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LocationZipCodeService {
@@ -51,4 +52,9 @@ public class LocationZipCodeService {
     public List<String> getCounties(String voivodeship) {
         return zipCodeRepository.findAllCounties(voivodeship);
     }
+
+    public List<LocationZipCode> getPlaces(String voivodeship, String county) {
+        return zipCodeRepository.findAllPlaces(voivodeship, county);
+    }
+
 }

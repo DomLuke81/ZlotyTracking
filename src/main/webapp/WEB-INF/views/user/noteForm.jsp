@@ -56,7 +56,7 @@
             </td>
             <td>
                 <label for="place">miejscowość:</label><br/>
-                <select name="place" id="place">
+                <select name="place" id="place" required>
                 </select>
             </td>
             <td><form:errors path="place" cssClass="error"/></td>

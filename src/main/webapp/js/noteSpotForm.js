@@ -64,10 +64,17 @@ function drawEditionRadios(noteTypes) {
 //obsługa lokalizacji
 const voivodeshipSelect = document.getElementById("voivodeships");
 const countySelect = document.getElementById("counties");
+const placeSelect = document.getElementById("place");
 
 voivodeshipSelect.addEventListener("change", function () {
     if (this.value !== "") {
         getCounties(this.value);
+    }
+});
+
+countySelect.addEventListener("change", function () {
+    if (this.value !== "") {
+        getPlaces(voivodeshipSelect.value ,this.value);
     }
 });
 
@@ -87,6 +94,22 @@ function getCounties(voivodeship) {
         })
 }
 
+function getPlaces(voivodeship ,county) {
+    fetch("http://localhost:8080/json/places/" + voivodeship + "/" + county, {method: 'GET'})
+        .then(function (response) {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Ooops")
+        })
+        .then(function (data) {
+            fillPlacesSelect(data);
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+}
+
 function fillCountiesSelect(counties) {
     countySelect.innerText = "";
 
@@ -100,5 +123,22 @@ function fillCountiesSelect(counties) {
         countyOption.setAttribute("value", county);
         countyOption.innerText = county;
         countySelect.append(countyOption);
+    })
+}
+
+function fillPlacesSelect(places) {
+    placeSelect.innerText = "";
+
+    let placeOption = document.createElement("option");
+    placeOption.setAttribute("value", "");
+    placeOption.innerText = "--wybierz miejscowość--";
+    placeSelect.append(placeOption);
+
+    console.log(places);
+    places.forEach(function (place){
+        placeOption = document.createElement("option");
+        placeOption.setAttribute("value", place.id);
+        placeOption.innerText = place.place;
+        placeSelect.append(placeOption);
     })
 }
