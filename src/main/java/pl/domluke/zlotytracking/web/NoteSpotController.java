@@ -7,19 +7,23 @@ import org.springframework.web.bind.annotation.*;
 import pl.domluke.zlotytracking.domain.LocationZipCode;
 import pl.domluke.zlotytracking.domain.NoteSpotDto;
 import pl.domluke.zlotytracking.service.LocationZipCodeService;
+import pl.domluke.zlotytracking.service.NoteSpotService;
 import pl.domluke.zlotytracking.service.NoteTypeService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("user/notes")
 public class NoteSpotController {
     private final NoteTypeService noteTypeService;
     private final LocationZipCodeService locationService;
+    private final NoteSpotService noteSpotService;
 
-    public NoteSpotController(NoteTypeService noteTypeService, LocationZipCodeService locationService) {
+    public NoteSpotController(NoteTypeService noteTypeService, LocationZipCodeService locationService, NoteSpotService noteSpotService) {
         this.noteTypeService = noteTypeService;
         this.locationService = locationService;
+        this.noteSpotService = noteSpotService;
     }
 
     public void loadDataForFormToModel(Model model) {
@@ -37,8 +41,10 @@ public class NoteSpotController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(Model model, @PathVariable long id) {
-        model.addAttribute("noteSpotDto", new NoteSpotDto());
+    public String editForm(@PathVariable long id, Model model, Principal principal) {
+        model.addAttribute("noteSpotDto", noteSpotService.getNoteSpotById(id));
+//        System.out.println(authentication.getPrincipal().);
+//        model.addAttribute("message", ((User) principal).getEmail());
         loadDataForFormToModel(model);
         return "user/noteForm";
     }
@@ -48,12 +54,11 @@ public class NoteSpotController {
         noteSpotDto.setNoteSerialNumber(noteSpotDto.getNoteSerialNumber().toUpperCase());
         if (bindingResult.hasErrors()) {
             loadDataForFormToModel(model);
-            model.addAttribute("message", noteSpotDto.getDenominationRadios());
             return "user/noteForm";
         }
-        //save
+        noteSpotService.save(noteSpotDto, null);
         loadDataForFormToModel(model);
-        model.addAttribute("message", noteSpotDto.getSpotTime());
+        model.addAttribute("message", "zapisano");
         return "user/noteForm";
     }
 }

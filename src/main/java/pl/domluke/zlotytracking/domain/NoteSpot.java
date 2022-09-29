@@ -90,7 +90,7 @@ public class NoteSpot {
         noteSpotDto.setNoteTypeDto(note == null ? null : note.getEmisja().toDto());
         noteSpotDto.setNoteSerialNumber(note == null ? null : note.getSerialNumber());
         noteSpotDto.setPlace(zipCode);
-        noteSpotDto.setSpotTime(spotTime.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        noteSpotDto.setSpotTime(spotTime == null ? null : spotTime.format(DateTimeFormatter.ISO_LOCAL_DATE));
         noteSpotDto.setDescription(description);
         return noteSpotDto;
     }
