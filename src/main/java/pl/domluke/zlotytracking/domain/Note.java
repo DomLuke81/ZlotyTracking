@@ -57,4 +57,11 @@ public class Note {
     public void setSpots(Set<NoteSpot> spots) {
         this.spots = spots;
     }
+
+    public Note(){}
+
+    public Note(String serialNumber, NoteType emisja) {
+        this.serialNumber = serialNumber;
+        this.emisja = emisja;
+    }
 }

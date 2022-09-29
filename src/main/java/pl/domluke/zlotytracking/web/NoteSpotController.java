@@ -61,6 +61,7 @@ public class NoteSpotController {
             return "user/noteForm";
         }
         noteSpotService.save(noteSpotDto, userService.findUserByName(principal.getName()));
+        //sprawdzenie czy nie było hitów -> komunikat
         loadDataForFormToModel(model);
         model.addAttribute("message", "zapisano");
         return "user/noteForm";
