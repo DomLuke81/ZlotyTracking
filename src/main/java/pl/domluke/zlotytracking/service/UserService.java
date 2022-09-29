@@ -25,8 +25,8 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findUserByName(String name) {
+        return userRepository.findByName(name);
     }
 
     public User saveUser(User user) {

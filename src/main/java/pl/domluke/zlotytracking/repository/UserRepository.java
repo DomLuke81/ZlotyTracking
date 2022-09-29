@@ -8,5 +8,5 @@ import pl.domluke.zlotytracking.domain.User;
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<User, Integer> {
-    User findByEmail(String email);
+    User findByName(String name);
 }

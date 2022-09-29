@@ -42,9 +42,9 @@ public class LoginController {
 
     @PostMapping("/register")
     public String register(@Valid User user, BindingResult bindingResult, Model model) {
-        if (userService.findUserByEmail(user.getEmail()) != null) {
-            bindingResult.rejectValue("email", "error.user",
-                    "Użytkownik o takim mailu już jest zarejestrowany w serwisie");
+        if (userService.findUserByName(user.getName()) != null) {
+            bindingResult.rejectValue("name", "error.user",
+                    "Użytkownik o takiej nazwie już jest zarejestrowany w serwisie");
         }
         if (bindingResult.hasErrors()) {
             return "user/registerForm";

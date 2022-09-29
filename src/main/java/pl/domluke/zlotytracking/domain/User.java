@@ -3,7 +3,6 @@ package pl.domluke.zlotytracking.domain;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
@@ -16,15 +15,10 @@ public class User {
     @Column
     private int id;
 
-    @Column(nullable = false, unique = true)
-    @Email
-    @NotBlank
-    private String email;
-
-    @Column(name = "first_name", nullable = false, length = 30)
+    @Column(nullable = false, unique = true, length = 30)
     @NotBlank
     @Length(max = 30)
-    private String firstName;
+    private String name;
 
     @Column(nullable = false)
     @NotBlank
@@ -47,20 +41,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

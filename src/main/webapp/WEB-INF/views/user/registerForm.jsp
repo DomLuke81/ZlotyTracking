@@ -7,18 +7,13 @@
 </head>
 <body>
     <div>
-    Masz już konto, przejdź do <a href="<c:url value="/login"/>">strony logowania</a>
+    Masz już konto? Przejdź do <a href="<c:url value="/login"/>">strony logowania</a>
     </div>
     <form:form method="post" modelAttribute="user">
         <div>
-            <label id="email">Email:</label>
-            <form:input path="email" id="email"/>
-            <form:errors path="email"/>
-        </div>
-        <div>
-            <label id="firstName">Imię:</label>
-            <form:input path="firstName" id="firstName"/>
-            <form:errors path="firstName"/>
+            <label id="name">Nazwa:</label>
+            <form:input path="name" id="name"/>
+            <form:errors path="name"/>
         </div>
         <div>
             <label id="password">Hasło:</label>

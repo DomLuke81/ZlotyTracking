@@ -11,9 +11,9 @@
 </div>
 <form:form method="post" modelAttribute="user">
     <div>
-        <label id="email">Email:</label>
-        <form:input path="email" id="email"/>
-        <form:errors path="email"/>
+        <label id="name">Nazwa:</label>
+        <form:input path="name" id="name"/>
+        <form:errors path="name"/>
     </div>
     <div>
         <label id="password">Hasło:</label>
