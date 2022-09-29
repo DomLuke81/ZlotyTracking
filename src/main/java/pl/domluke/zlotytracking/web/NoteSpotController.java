@@ -9,6 +9,7 @@ import pl.domluke.zlotytracking.domain.NoteSpotDto;
 import pl.domluke.zlotytracking.service.LocationZipCodeService;
 import pl.domluke.zlotytracking.service.NoteSpotService;
 import pl.domluke.zlotytracking.service.NoteTypeService;
+import pl.domluke.zlotytracking.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -20,10 +21,14 @@ public class NoteSpotController {
     private final LocationZipCodeService locationService;
     private final NoteSpotService noteSpotService;
 
-    public NoteSpotController(NoteTypeService noteTypeService, LocationZipCodeService locationService, NoteSpotService noteSpotService) {
+    private final UserService userService;
+
+    public NoteSpotController(NoteTypeService noteTypeService, LocationZipCodeService locationService,
+                              NoteSpotService noteSpotService, UserService userService) {
         this.noteTypeService = noteTypeService;
         this.locationService = locationService;
         this.noteSpotService = noteSpotService;
+        this.userService = userService;
     }
 
     public void loadDataForFormToModel(Model model) {
@@ -41,22 +46,21 @@ public class NoteSpotController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable long id, Model model, Principal principal) {
+    public String editForm(@PathVariable long id, Model model) {
         model.addAttribute("noteSpotDto", noteSpotService.getNoteSpotById(id));
-//        System.out.println(authentication.getPrincipal().);
-//        model.addAttribute("message", ((User) principal).getEmail());
         loadDataForFormToModel(model);
         return "user/noteForm";
     }
 
     @PostMapping("/edit/{id}")
-    public String saveNoteSpot(@Valid NoteSpotDto noteSpotDto, BindingResult bindingResult, Model model) {
+    public String saveNoteSpot(@Valid NoteSpotDto noteSpotDto, BindingResult bindingResult, Model model,
+                               Principal principal) {
         noteSpotDto.setNoteSerialNumber(noteSpotDto.getNoteSerialNumber().toUpperCase());
         if (bindingResult.hasErrors()) {
             loadDataForFormToModel(model);
             return "user/noteForm";
         }
-        noteSpotService.save(noteSpotDto, null);
+        noteSpotService.save(noteSpotDto, userService.findUserByName(principal.getName()));
         loadDataForFormToModel(model);
         model.addAttribute("message", "zapisano");
         return "user/noteForm";

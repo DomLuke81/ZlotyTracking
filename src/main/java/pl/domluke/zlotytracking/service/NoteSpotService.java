@@ -22,6 +22,7 @@ public class NoteSpotService {
     }
 
     public boolean save(NoteSpotDto noteSpotDto, User user) {
+
         return false;
     }
 }

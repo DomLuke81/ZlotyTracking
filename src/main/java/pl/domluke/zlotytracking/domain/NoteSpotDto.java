@@ -82,4 +82,5 @@ public class NoteSpotDto {
     public void setDenominationRadios(int denominationRadios) {
         this.denominationRadios = denominationRadios;
     }
+
 }
