@@ -93,7 +93,7 @@
         </tr>
     </table>
 </form:form>
-<p><a href="/admin/noteTypes">Wróć</a></p>
+<p><a href="/user/notes/spots">Wróć</a></p>
 <%@include file="../footer.jspf" %>
 <script src="<c:url value="/js/noteSpotForm.js"/>" type="text/javascript"></script>
 </body>
