@@ -44,7 +44,8 @@ public class NoteTypeService {
     }
 
     public Page<NoteTypeDto> getAllOnPages(int page, int itemsOnPage) {
-        Page<NoteType> pages = noteTypeRepository.findAllByOrderByDenominationAscEditionAsc(PageRequest.of(page, itemsOnPage));
+        Page<NoteType> pages =
+                noteTypeRepository.findAllByOrderByDenominationAscEditionAsc(PageRequest.of(page, itemsOnPage));
         List<NoteTypeDto> noteTypeDtoList = pages.getContent().stream().map(NoteType::toDto).collect(Collectors.toList());
         return new PageImpl<>(noteTypeDtoList, PageRequest.of(page, itemsOnPage), pages.getTotalElements());
     }

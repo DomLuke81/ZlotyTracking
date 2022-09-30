@@ -65,4 +65,17 @@ public class NoteSpotController {
         model.addAttribute("message", "zapisano");
         return "user/noteForm";
     }
+
+    @GetMapping("/spots")
+    public String showSpots() {
+        return "forward:/user/notes/spots/1";
+    }
+
+    @GetMapping("/spots/{page}")
+    public String showSpotsPaged(Model model, @PathVariable Integer page,
+                                 @AuthenticationPrincipal LoggedUser loggedUser) {
+        model.addAttribute("page",
+                noteSpotService.getAllByUserOnPages(loggedUser.getUser(), (page -1), 20));
+        return "user/spotsList";
+    }
 }

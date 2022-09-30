@@ -1,6 +1,9 @@
 package pl.domluke.zlotytracking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import pl.domluke.zlotytracking.domain.*;
 import pl.domluke.zlotytracking.repository.NoteRepository;
@@ -63,5 +66,14 @@ public class NoteSpotService {
         return noteSpotRepository.findLastByUserIdLimitedTo(user.getId(), 5)
                 .stream().map(NoteSpot::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public Page<NoteSpotDto> getAllByUserOnPages(User user, int page, int itemsOnPage) {
+        PageRequest pageRequest = PageRequest.of(page, itemsOnPage);
+        Page<NoteSpot> pages = noteSpotRepository.findAllByUserOrderBySpotTimeDesc(user, pageRequest);
+        List<NoteSpotDto> noteSpotDtoList = pages.getContent().stream()
+                .map(NoteSpot::toDto)
+                .collect(Collectors.toList());
+        return new PageImpl<>(noteSpotDtoList, pageRequest, pages.getTotalElements());
     }
 }

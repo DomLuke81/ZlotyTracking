@@ -28,7 +28,8 @@
                 <tbody>
                 <c:forEach items="${noteSpots}" var="noteSpot">
                         <tr>
-                            <td>${noteSpot.noteTypeDto.denomination}</td>
+                            <td><img src="data:image/jpeg;base64,${noteSpot.noteTypeDto.image}"
+                                     alt="${noteSpot.noteTypeDto.denomination}" width="62"/></td>
                             <td>${noteSpot.noteTypeDto.edition}</td>
                             <td>${noteSpot.noteSerialNumber}</td>
                             <td>${noteSpot.place.place}</td>
