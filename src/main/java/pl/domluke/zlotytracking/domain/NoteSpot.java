@@ -88,6 +88,7 @@ public class NoteSpot {
         NoteSpotDto noteSpotDto = new NoteSpotDto();
         noteSpotDto.setId(id);
         noteSpotDto.setNoteTypeDto(note == null ? null : note.getEmisja().toDto());
+        noteSpotDto.setDenominationRadios(note == null ? 0 : note.getEmisja().getDenomination());
         noteSpotDto.setNoteSerialNumber(note == null ? null : note.getSerialNumber());
         noteSpotDto.setPlace(zipCode);
         noteSpotDto.setSpotTime(spotTime == null ? null : spotTime.format(DateTimeFormatter.ISO_LOCAL_DATE));
