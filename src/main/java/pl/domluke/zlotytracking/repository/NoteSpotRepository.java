@@ -1,10 +1,13 @@
 package pl.domluke.zlotytracking.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.domluke.zlotytracking.domain.NoteSpot;
+import pl.domluke.zlotytracking.domain.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -12,4 +15,8 @@ import java.util.Optional;
 public interface NoteSpotRepository extends JpaRepository<NoteSpot, Long> {
 
     Optional<NoteSpot> findById(long id);
+
+    @Query(value = "SELECT * FROM note_spot WHERE user_id = :userId ORDER BY id DESC LIMIT :numberOfEntries",
+            nativeQuery = true)
+    List<NoteSpot> findLastByUserIdLimitedTo(long userId, int numberOfEntries);
 }

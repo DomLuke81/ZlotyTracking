@@ -9,7 +9,9 @@ import pl.domluke.zlotytracking.repository.NoteTypeRepository;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NoteSpotService {
@@ -55,5 +57,11 @@ public class NoteSpotService {
             noteRepository.save(note);
             return note;
         }
+    }
+
+    public List<NoteSpotDto> getLast5EntriesByUser(User user) {
+        return noteSpotRepository.findLastByUserIdLimitedTo(user.getId(), 5)
+                .stream().map(NoteSpot::toDto)
+                .collect(Collectors.toList());
     }
 }

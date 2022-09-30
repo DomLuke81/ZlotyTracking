@@ -6,9 +6,40 @@
 </head>
 <body>
 <%@include file="../header.jspf" %>
-
-<h2>Moje ostatnio wprowadzone banknoty</h2>
-<p><a href="/user/notes/edit/0">Dodaj nowy banknot...</a></p>
+<table>
+    <tr>
+        <td>
+            <p><a href="/user/notes/edit/0">Dodaj nowy banknot...</a></p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2>Moje ostatnio wprowadzone banknoty</h2>
+            <table onclick="location.href='/user/notes/spots'" title="Kliknij - pokaż wszystkie">
+                <thead>
+                <tr>
+                    <th>nominał</th>
+                    <th>emisja</th>
+                    <th>numer seryjny</th>
+                    <th>lokalizacja</th>
+                    <th>data</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${noteSpots}" var="noteSpot">
+                        <tr>
+                            <td>${noteSpot.noteTypeDto.denomination}</td>
+                            <td>${noteSpot.noteTypeDto.edition}</td>
+                            <td>${noteSpot.noteSerialNumber}</td>
+                            <td>${noteSpot.place.place}</td>
+                            <td>${noteSpot.spotTime}</td>
+                        </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
 
 
 <%@include file="../footer.jspf" %>
