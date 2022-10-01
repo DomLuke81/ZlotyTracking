@@ -134,7 +134,6 @@ function fillPlacesSelect(places) {
     placeOption.innerText = "--wybierz miejscowość--";
     placeSelect.append(placeOption);
 
-    console.log(places);
     places.forEach(function (place){
         placeOption = document.createElement("option");
         placeOption.setAttribute("value", place.id);

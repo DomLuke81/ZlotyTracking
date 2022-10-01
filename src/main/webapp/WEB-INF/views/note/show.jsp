@@ -3,8 +3,8 @@
 <head>
     <title>Banknot</title>
     <%--    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>--%>
-    <link rel="stylesheet" type="text/css" href="/css/mapDistance.css"/>
-    <script type="module" src="/js/mapShowDistance.js"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/mapDistance.css"/>"/>
+    <script type="module" src="<c:url value="/js/mapShowDistance.js"/>"></script>
 </head>
 <body>
 <%@include file="../header.jspf" %>
@@ -47,17 +47,14 @@
                         <td>${spot.place.place}</td>
                         <td>${spot.userName}</td>
                         <td>${spot.description}</td>
+                        <p hidden class="hiddenPlace">${spot.place.zipCode}, ${spot.place.place}</p>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
-            <p hidden class="hiddenPlace">Poznań</p>
-            <p hidden class="hiddenPlace">"Wrocław"</p>
         </td>
         <td>
             <div id="container">
-                <input type="hidden" id="start" value="82-300, Elbląg">
-                <input type="hidden" id="end" value="01-489, Warszawa">
                 <div id="map"></div>
                 <div id="sidebar">
                     <div id="directions-panel"></div>

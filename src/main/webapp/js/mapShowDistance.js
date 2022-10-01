@@ -14,30 +14,21 @@ function initMap() {
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     let waypts = [];
-    // const checkboxArray = document.getElementById("waypoints");
-    // for (let i = 0; i < checkboxArray.length; i++) {
-    //     if (checkboxArray.options[i].selected) {
-    //         waypts.push({
-    //             location: checkboxArray[i].value,
-    //             stopover: true,
-    //         });
-    //     }
-    // }
     const placesHiddenPoles = document.querySelectorAll(".hiddenPlace");
-    for (let i = 0; i < placesHiddenPoles.length; i++) {
-        let loc = placesHiddenPoles[i].innerText;
-        console.log(loc);
+
+    const start = placesHiddenPoles[0].innerHTML;
+    const end = placesHiddenPoles[placesHiddenPoles.length - 1].innerHTML;
+    for (let i = 1; i < placesHiddenPoles.length - 1; i++) {
         waypts.push({
-            location: loc,
+            location: placesHiddenPoles[i].innerHTML,
             stopover: true,
         });
     }
-    console.log(waypts);
 
     directionsService
         .route({
-            origin: document.getElementById("start").value,
-            destination: document.getElementById("end").value,
+            origin: start,
+            destination: end,
             waypoints: waypts,
             optimizeWaypoints: true,
             travelMode: google.maps.TravelMode.DRIVING,
