@@ -19,9 +19,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             stopover: true,
         });
     }
-    console.log(start);
-    console.log(waypts);
-    console.log(end);
 
     directionsService
         .route({

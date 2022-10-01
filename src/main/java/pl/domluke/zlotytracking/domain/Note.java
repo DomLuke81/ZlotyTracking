@@ -3,6 +3,7 @@ package pl.domluke.zlotytracking.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -74,7 +75,7 @@ public class Note {
         noteDto.setNoteType(emisja.toDto());
         noteDto.setSpots(spots.stream()
                 .map(NoteSpot::toDto)
-//                .sorted()
+                .sorted(Comparator.comparing(NoteSpotDto::getSpotTime))
                 .collect(Collectors.toList())
         );
         return noteDto;
