@@ -13,6 +13,7 @@
             </sec:authorize>
             <sec:authorize access="hasAuthority('USER')">
                 <td><a href="/user">Panel</a></td>
+                <td><a href="/user/notes">Moje banknoty</a></td>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <td>Jesteś zalogowany jako: <sec:authentication property="principal.username"/></td>

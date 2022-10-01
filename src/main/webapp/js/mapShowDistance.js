@@ -26,7 +26,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
             destination: end,
             waypoints: waypts,
             optimizeWaypoints: true,
-            travelMode: google.maps.TravelMode.DRIVING,
+            travelMode: google.maps.TravelMode.BICYCLING,
         })
         .then((response) => {
             directionsRenderer.setDirections(response);
