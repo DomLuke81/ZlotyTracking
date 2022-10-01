@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Banknot</title>
@@ -38,6 +39,7 @@
                     <th>miejsce</th>
                     <th>użytkownik</th>
                     <th>opis</th>
+                    <th>trasa</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +49,7 @@
                         <td>${spot.place.place}</td>
                         <td>${spot.userName}</td>
                         <td>${spot.description}</td>
-                        <p hidden class="hiddenPlace">${spot.place.zipCode}, ${spot.place.place}</p>
+                        <td class="trasa">${spot.place.zipCode}, ${spot.place.place}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

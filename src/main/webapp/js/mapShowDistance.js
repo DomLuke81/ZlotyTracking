@@ -1,8 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
 function initMap() {
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer();
@@ -14,16 +9,19 @@ function initMap() {
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     let waypts = [];
-    const placesHiddenPoles = document.querySelectorAll(".hiddenPlace");
+    const trasaTd = document.querySelectorAll(".trasa");
 
-    const start = placesHiddenPoles[0].innerHTML;
-    const end = placesHiddenPoles[placesHiddenPoles.length - 1].innerHTML;
-    for (let i = 1; i < placesHiddenPoles.length - 1; i++) {
+    const start = trasaTd[0].innerHTML;
+    const end = trasaTd[trasaTd.length - 1].innerHTML;
+    for (let i = 1; i < trasaTd.length - 1; i++) {
         waypts.push({
-            location: placesHiddenPoles[i].innerHTML,
+            location: trasaTd[i].innerHTML,
             stopover: true,
         });
     }
+    console.log(start);
+    console.log(waypts);
+    console.log(end);
 
     directionsService
         .route({
@@ -35,21 +33,11 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         })
         .then((response) => {
             directionsRenderer.setDirections(response);
-
             const route = response.routes[0];
-            const summaryPanel = document.getElementById("directions-panel");
-
-            summaryPanel.innerHTML = "";
-
             // For each route, display summary information.
+            trasaTd[0].innerHTML = "";
             for (let i = 0; i < route.legs.length; i++) {
-                const routeSegment = i + 1;
-
-                summaryPanel.innerHTML +=
-                    "<b>Route Segment: " + routeSegment + "</b><br>";
-                summaryPanel.innerHTML += route.legs[i].start_address + " to ";
-                summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-                summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
+                trasaTd[i+1].innerHTML = route.legs[i].distance.text;
             }
         })
         .catch((e) => window.alert("Directions request failed due to " + status));
