@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "notes",
@@ -58,10 +59,24 @@ public class Note {
         this.spots = spots;
     }
 
-    public Note(){}
+    public Note() {
+    }
 
     public Note(String serialNumber, NoteType emisja) {
         this.serialNumber = serialNumber;
         this.emisja = emisja;
+    }
+
+    public NoteDto toDto() {
+        NoteDto noteDto = new NoteDto();
+        noteDto.setId(id);
+        noteDto.setSerialNumber(serialNumber);
+        noteDto.setNoteType(emisja.toDto());
+        noteDto.setSpots(spots.stream()
+                .map(NoteSpot::toDto)
+//                .sorted()
+                .collect(Collectors.toList())
+        );
+        return noteDto;
     }
 }

@@ -10,6 +10,7 @@ import pl.domluke.zlotytracking.repository.NoteRepository;
 import pl.domluke.zlotytracking.repository.NoteSpotRepository;
 import pl.domluke.zlotytracking.repository.NoteTypeRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -75,5 +76,9 @@ public class NoteSpotService {
                 .map(NoteSpot::toDto)
                 .collect(Collectors.toList());
         return new PageImpl<>(noteSpotDtoList, pageRequest, pages.getTotalElements());
+    }
+
+    public NoteDto getNoteBySpotId(long id) {
+        return noteRepository.findBySpotsId(id).orElseThrow(EntityNotFoundException::new).toDto();
     }
 }

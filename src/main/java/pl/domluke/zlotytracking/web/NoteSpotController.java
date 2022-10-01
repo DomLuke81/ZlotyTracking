@@ -14,7 +14,6 @@ import pl.domluke.zlotytracking.service.NoteTypeService;
 import pl.domluke.zlotytracking.service.UserService;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 @RequestMapping("user/notes")
@@ -66,7 +65,7 @@ public class NoteSpotController {
         return "user/noteForm";
     }
 
-    @GetMapping("/spots")
+    @GetMapping({"/spots", ""})
     public String showSpots() {
         return "forward:/user/notes/spots/1";
     }
@@ -77,5 +76,11 @@ public class NoteSpotController {
         model.addAttribute("page",
                 noteSpotService.getAllByUserOnPages(loggedUser.getUser(), (page -1), 20));
         return "user/spotsList";
+    }
+
+    @GetMapping("/show/{id}")
+    public String showNote(@PathVariable long id, Model model) {
+        model.addAttribute("note", noteSpotService.getNoteBySpotId(id));
+        return "note/show";
     }
 }

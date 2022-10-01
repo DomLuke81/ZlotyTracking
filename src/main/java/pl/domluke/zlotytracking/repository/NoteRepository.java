@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
     Optional<Note> findByEmisja_IdAndSerialNumber(int noteTypeId, String serialnumber);
+
+    Optional<Note> findBySpotsId(long spotId);
 }

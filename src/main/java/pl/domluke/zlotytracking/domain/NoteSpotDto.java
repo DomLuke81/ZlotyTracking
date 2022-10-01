@@ -1,6 +1,5 @@
 package pl.domluke.zlotytracking.domain;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -23,9 +22,18 @@ public class NoteSpotDto {
 
     private String spotTime;
 
-    @Column
     @Size(max = 255)
     private String description;
+
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public long getId() {
         return id;

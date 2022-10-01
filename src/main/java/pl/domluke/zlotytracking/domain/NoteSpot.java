@@ -93,6 +93,7 @@ public class NoteSpot {
         noteSpotDto.setPlace(zipCode);
         noteSpotDto.setSpotTime(spotTime == null ? null : spotTime.format(DateTimeFormatter.ISO_LOCAL_DATE));
         noteSpotDto.setDescription(description);
+        noteSpotDto.setUserName(user.getName());
         return noteSpotDto;
     }
 }
