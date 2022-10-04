@@ -81,4 +81,13 @@ public class NoteSpotService {
     public NoteDto getNoteBySpotId(long id) {
         return noteRepository.findBySpotsId(id).orElseThrow(EntityNotFoundException::new).toDto();
     }
+
+    public Page<NoteDto> getAllByUserAndMoreSpotsOnPages(User user, int spots, int page, int itemsOnPage) {
+        PageRequest pageRequest = PageRequest.of(page, itemsOnPage);
+        Page<Note> pages = noteRepository.findByUserWhereSpotsCountIsMoreThan(spots, user.getId(), pageRequest);
+        List<NoteDto> noteDtoList = pages.getContent().stream()
+                .map(Note::toDto)
+                .collect(Collectors.toList());
+        return new PageImpl<>(noteDtoList, pageRequest, pages.getTotalElements());
+    }
 }

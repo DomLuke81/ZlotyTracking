@@ -9,18 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.domluke.zlotytracking.domain.LoggedUser;
 import pl.domluke.zlotytracking.domain.User;
 import pl.domluke.zlotytracking.service.NoteSpotService;
-import pl.domluke.zlotytracking.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
     private final NoteSpotService noteSpotService;
-    private final UserService userService;
 
     @Autowired
-    public UserController(NoteSpotService noteSpotService, UserService userService) {
+    public UserController(NoteSpotService noteSpotService) {
         this.noteSpotService = noteSpotService;
-        this.userService = userService;
     }
 
     @GetMapping
@@ -28,6 +25,8 @@ public class UserController {
         User user = loggedUser.getUser();
         model.addAttribute("user", user);
         model.addAttribute("noteSpots", noteSpotService.getLast5EntriesByUser(user));
+        model.addAttribute("noteHits",
+                noteSpotService.getAllByUserAndMoreSpotsOnPages(user, 0, 0, 2));
         return "user/home";
     }
 

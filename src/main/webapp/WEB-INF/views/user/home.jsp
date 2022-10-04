@@ -14,7 +14,7 @@
     </tr>
     <tr>
         <td>
-            <h2>Moje ostatnio wprowadzone banknoty</h2>
+            <h2><br/>Moje ostatnio wprowadzone banknoty</h2>
             <table onclick="location.href='/user/notes/spots'" title="Kliknij - pokaż wszystkie">
                 <thead>
                 <tr>
@@ -34,6 +34,32 @@
                             <td>${noteSpot.noteSerialNumber}</td>
                             <td>${noteSpot.place.place}</td>
                             <td>${noteSpot.spotTime}</td>
+                        </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2><br/>Moje ostatnie trafienia</h2>
+            <table onclick="location.href='/user/notes/hits'" title="Kliknij - pokaż wszystkie">
+                <thead>
+                <tr>
+                    <th>nominał</th>
+                    <th>emisja</th>
+                    <th>numer seryjny</th>
+                    <th>liczba trafień</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${noteHits.content}" var="noteHit">
+                        <tr>
+                            <td><img src="data:image/jpeg;base64,${noteHit.noteType.image}"
+                                     alt="${noteHit.noteType.denomination}" width="62"/></td>
+                            <td>${noteHit.noteType.edition}</td>
+                            <td>${noteHit.serialNumber}</td>
+                            <td>${noteHit.spots.size()}</td>
                         </tr>
                 </c:forEach>
                 </tbody>
