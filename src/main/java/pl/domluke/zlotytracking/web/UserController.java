@@ -26,7 +26,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("noteSpots", noteSpotService.getLast5EntriesByUser(user));
         model.addAttribute("noteHits",
-                noteSpotService.getAllByUserAndMoreSpotsOnPages(user, 0, 0, 2));
+                noteSpotService.getAllByUserAndMoreSpotsOnPages(user, 1, 0, 5));
         return "user/home";
     }
 

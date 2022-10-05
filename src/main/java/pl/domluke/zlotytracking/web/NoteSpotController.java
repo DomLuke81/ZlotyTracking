@@ -11,7 +11,6 @@ import pl.domluke.zlotytracking.domain.NoteSpotDto;
 import pl.domluke.zlotytracking.service.LocationZipCodeService;
 import pl.domluke.zlotytracking.service.NoteSpotService;
 import pl.domluke.zlotytracking.service.NoteTypeService;
-import pl.domluke.zlotytracking.service.UserService;
 
 import javax.validation.Valid;
 
@@ -23,7 +22,7 @@ public class NoteSpotController {
     private final NoteSpotService noteSpotService;
 
     public NoteSpotController(NoteTypeService noteTypeService, LocationZipCodeService locationService,
-                              NoteSpotService noteSpotService, UserService userService) {
+                              NoteSpotService noteSpotService) {
         this.noteTypeService = noteTypeService;
         this.locationService = locationService;
         this.noteSpotService = noteSpotService;
@@ -76,6 +75,20 @@ public class NoteSpotController {
         model.addAttribute("page",
                 noteSpotService.getAllByUserOnPages(loggedUser.getUser(), (page -1), 20));
         return "user/spotsList";
+    }
+
+    @GetMapping({"/hits"})
+    public String showHits() {
+        return "forward:/user/notes/hits/1";
+    }
+
+    @GetMapping("/hits/{page}")
+    public String showHitsPaged(Model model, @PathVariable Integer page,
+                                 @AuthenticationPrincipal LoggedUser loggedUser) {
+        model.addAttribute("page",
+                noteSpotService.getAllByUserAndMoreSpotsOnPages(loggedUser.getUser(),
+                        1, (page - 1), 20));
+        return "user/hitsList";
     }
 
     @GetMapping("/show/{id}")

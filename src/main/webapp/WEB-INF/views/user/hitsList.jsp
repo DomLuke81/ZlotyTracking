@@ -2,12 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Wprowadzone banknoty</title>
+    <title>Trafienia banknotów</title>
 </head>
 <body>
 <%@include file="../header.jspf" %>
 <div>
-    <h2>Moje wprowadzone banknoty</h2>
+    <h2>Moje trafienia banknotów</h2>
     <p><a href="/user/notes/edit/0">Dodaj nowy banknot...</a></p>
     <table>
         <thead>
@@ -15,25 +15,20 @@
             <th>nominał</th>
             <th>emisja</th>
             <th>numer seryjny</th>
-            <th>lokalizacja</th>
-            <th>data</th>
-            <th>notatka</th>
+            <th>liczba trafień</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${page.content}" var="noteSpot">
+        <c:forEach items="${page.content}" var="noteHit">
             <tr>
-                <td><img src="data:image/jpeg;base64,${noteSpot.noteTypeDto.image}"
-                         alt="${noteSpot.noteTypeDto.denomination}" width="62"/></td>
-                <td>${noteSpot.noteTypeDto.edition}</td>
-                <td>${noteSpot.noteSerialNumber}</td>
-                <td>${noteSpot.place.place}</td>
-                <td>${noteSpot.spotTime}</td>
-                <td>${noteSpot.description}</td>
+                <td><img src="data:image/jpeg;base64,${noteHit.noteType.image}"
+                         alt="${noteHit.noteType.denomination}" width="62"/></td>
+                <td>${noteHit.noteType.edition}</td>
+                <td>${noteHit.serialNumber}</td>
+                <td>${noteHit.spots.size()}</td>
                 <td>
-                    <a href="/user/notes/show/${noteSpot.id}">Pokaż</a>
-                    <a href="/user/notes/edit/${noteSpot.id}">Edytuj</a>
+                    <a href="/user/notes/show/${noteHit.spots[0].id}">Pokaż</a>
                 </td>
             </tr>
         </c:forEach>
@@ -43,7 +38,7 @@
     <c:forEach begin="1" end="${page.totalPages}" var="itemPages">
         <c:choose>
             <c:when test="${itemPages == (page.number + 1)}">${itemPages}</c:when>
-            <c:otherwise><a href="/user/notes/spots/${itemPages}">${itemPages}</a></c:otherwise>
+            <c:otherwise><a href="/user/notes/hits/${itemPages}">${itemPages}</a></c:otherwise>
         </c:choose>
     </c:forEach>
 </div>
