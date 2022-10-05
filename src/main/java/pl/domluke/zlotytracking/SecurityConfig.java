@@ -21,7 +21,7 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/json/**").permitAll()
+                .antMatchers("/", "/notes/*", "/json/**").permitAll()
                 .antMatchers("/login", "/login/register").anonymous()
                 .antMatchers("/login/redirect").authenticated()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")

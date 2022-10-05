@@ -36,6 +36,15 @@ public class NoteSpotService {
         return noteSpotRepository.findById(id).orElse(new NoteSpot()).toDto();
     }
 
+    public NoteDto getNoteBySpotIdWithHiddenPoles(long id) {
+        NoteDto note = getNoteBySpotId(id);
+        note.setSerialNumber(putAsterisks(note.getSerialNumber()));
+        note.getSpots()
+                .forEach(s -> s.setUserName(putAsterisks(s.getUserName())));
+        return note;
+    }
+
+
     public void save(NoteSpotDto noteSpotDto, User user) {
         NoteSpot noteSpot = new NoteSpot();
         noteSpot.setId(noteSpotDto.getId());

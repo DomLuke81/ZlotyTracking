@@ -6,6 +6,7 @@
     <table width="100%">
         <tbody>
         <tr>
+            <td><a href="<c:url value="/"/>">Strona główna</a></td>
             <sec:authorize access="hasAuthority('ADMIN')">
                 <td><a href="/admin">Panel</a></td>
                 <td><a href="/admin/zipCodes">Kody pocztowe</a></td>

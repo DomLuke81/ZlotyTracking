@@ -19,6 +19,7 @@ Strona główna
                     <th>lokalizacja</th>
                     <th>data</th>
                     <th>użytkownik</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@ Strona główna
                         <td>${noteSpot.place.place}</td>
                         <td>${noteSpot.spotTime}</td>
                         <td>${noteSpot.userName}</td>
+                        <td><a href="/notes/${noteSpot.id}">Pokaż</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -47,6 +49,7 @@ Strona główna
                     <th>emisja</th>
                     <th>numer seryjny</th>
                     <th>liczba trafień</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,6 +60,7 @@ Strona główna
                         <td>${noteHit.noteType.edition}</td>
                         <td>${noteHit.serialNumber}</td>
                         <td>${noteHit.spots.size()}</td>
+                        <td><a href="/notes/${noteHit.spots[0].id}">Pokaż</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
