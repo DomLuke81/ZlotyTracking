@@ -26,4 +26,17 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
                     "JOIN note_spot ns2 ON n2.id = ns2.note_id WHERE user_id = :userId AND spots > :numberSpots",
             nativeQuery = true)
     Page<Note> findByUserWhereSpotsCountIsMoreThan(int numberSpots, long userId, Pageable pageable);
+
+    @Query(value = "SELECT * FROM " +
+            "(SELECT *, count(id) AS spots FROM " +
+            "(SELECT n.* FROM notes n JOIN note_spot ns on n.id = ns.note_id ORDER BY spot_time DESC) AS n2 " +
+            "GROUP BY id) AS n3 " +
+            "WHERE spots > :numberSpots",
+            countQuery = "SELECT * FROM " +
+                    "(SELECT *, count(id) AS spots FROM " +
+                    "(SELECT n.* FROM notes n JOIN note_spot ns on n.id = ns.note_id ORDER BY spot_time DESC) AS n2 " +
+                    "GROUP BY id) AS n3 " +
+                    "WHERE spots > :numberSpots",
+            nativeQuery = true)
+    Page<Note> findWhereSpotsCountIsMoreThanByOrderBySpotTimeDesc(int numberSpots, Pageable pageable);
 }

@@ -23,4 +23,6 @@ public interface NoteSpotRepository extends JpaRepository<NoteSpot, Long> {
     List<NoteSpot> findLastByUserIdLimitedTo(long userId, int numberOfEntries);
 
     Page<NoteSpot> findAllByUserOrderBySpotTimeDesc(User user, Pageable pageable);
+
+    Page<NoteSpot> findAllByOrderBySpotTimeDesc(Pageable pageable);
 }

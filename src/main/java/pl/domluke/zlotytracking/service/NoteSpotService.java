@@ -90,4 +90,30 @@ public class NoteSpotService {
                 .collect(Collectors.toList());
         return new PageImpl<>(noteDtoList, pageRequest, pages.getTotalElements());
     }
+
+    public Page<NoteDto> getAllHitsSortedByDateDescOnPages(int spots, int page, int itemsOnPage) {
+        PageRequest pageRequest = PageRequest.of(page, itemsOnPage);
+        Page<Note> pages =
+                noteRepository.findWhereSpotsCountIsMoreThanByOrderBySpotTimeDesc(spots, pageRequest);
+        List<NoteDto> noteDtoList = pages.getContent().stream()
+                .map(Note::toDto)
+                .peek(n -> n.setSerialNumber(putAsterisks(n.getSerialNumber())))
+                .collect(Collectors.toList());
+        return new PageImpl<>(noteDtoList, pageRequest, pages.getTotalElements());
+    }
+
+    public Page<NoteSpotDto> getAllSpotsSortedByDateDescOnPages(int page, int itemsOnPage) {
+        PageRequest pageRequest = PageRequest.of(page, itemsOnPage);
+        Page<NoteSpot> pages = noteSpotRepository.findAllByOrderBySpotTimeDesc(pageRequest);
+        List<NoteSpotDto> noteSpotDtoList = pages.getContent().stream()
+                .map(NoteSpot::toDto)
+                .peek(n -> n.setNoteSerialNumber(putAsterisks(n.getNoteSerialNumber())))
+                .peek(n -> n.setUserName(putAsterisks(n.getUserName())))
+                .collect(Collectors.toList());
+        return new PageImpl<>(noteSpotDtoList, pageRequest, pages.getTotalElements());
+    }
+
+    private String putAsterisks(String input) {
+        return input.charAt(0) + "*".repeat(Math.max(0, input.length() - 2)) + input.charAt(input.length() - 1);
+    }
 }
