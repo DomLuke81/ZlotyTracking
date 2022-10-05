@@ -48,7 +48,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 trasaTd[i + 1].innerHTML = route.legs[i].distance.text;
             }
         })
-        .catch((e) => window.alert("Directions request failed due to " + status));
+        .catch((e) => window.alert("Directions request failed due to " + e));
 }
 
 function geocode(request) {
